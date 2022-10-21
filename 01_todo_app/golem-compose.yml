@@ -1,0 +1,42 @@
+meta:
+  name: "ToDo List App"
+  description: "Application to store and manage your TODOs, powered by Golem Network"
+  author: "GolemFactory"
+  version: "0.1.0"
+payloads:
+  db:
+    runtime: "vm"
+    params:
+      image_hash: "85021afecf51687ecae8bdc21e10f3b11b82d2e3b169ba44e177340c"
+  http:
+    runtime: "vm"
+    params:
+      image_hash: "6c24f3616d7581d1e43171c174a54f8dba08fd104784d35b82bc28bd"
+nodes:
+  db:
+    payload: "db"
+    init:
+      - run:
+          args:
+            - "/bin/run_rqlite.sh"
+    network: "default"
+    ip:
+      - "192.168.0.2"
+  http:
+    payload: "http"
+    init:
+      - run:
+          args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 initdb"]
+      - run:
+          args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 run > /webapp/out 2> /webapp/err &"]
+    http_proxy:
+      ports:
+        - "5000"  # specify just the remote port, allow the local port to be automatically chosen
+    network: "default"
+    ip:
+      - "192.168.0.3"
+    depends_on:
+      - "db"
+networks:
+  default:
+    ip: "192.168.0.0/24"

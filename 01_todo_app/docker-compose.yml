@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  db:
+    build: db
+    image: todo-app-db:latest
+    command:
+      - /bin/run_rqlite.sh
+    ports:
+      - 4001:4001
+
+  http:
+    build: http
+    image: todo-app-http:latest
+    command:
+      - /webapp/run_http.sh
+    depends_on:
+      - db
+    ports:
+      - 5000:5000

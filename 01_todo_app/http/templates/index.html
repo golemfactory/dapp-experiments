@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- load MUI -->
+  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+  <style>
+  body {
+    background-image: url("https://assets-global.website-files.com/62446d07873fde065cbcb8d5/62446d07873fdec77fbcb92d_Header-background-circles-blue-theme-optimized-2.png");
+    background-color: #13188d;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .mui-container {
+      padding: 50px;
+  }
+  .mui-panel {
+      border-radius: 20px;
+  }
+  .form-wrapper {
+      margin-bottom: 30px;
+  }
+  .todo-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .todo-item {
+      display: flex;
+      justify-content: space-around;
+      width: 50%;
+      align-items: baseline;
+  }
+
+  .todo-item-done {
+      text-decoration: line-through;
+      color: rgba(0, 0, 0, 0.5)
+  }
+
+  .todo-item + .todo-item {
+      margin-top: 20px;
+  }
+  </style>
+</head>
+<body>
+<!-- example content -->
+<div class="mui-container">
+  <div class="mui-panel mui--text-center">
+    <h1>My ToDo List</h1>
+    <h2>Application that allows you to store your tasks, based on a distributed architecture!</h2>
+  </div>
+  <div class="mui-panel mui--text-center">
+    <div class="form-wrapper">
+      <form class="mui-form--inline" method="post">
+        <div class="mui-textfield">
+          <input type="text" name="text" placeholder="Write something to do..."/>
+        </div>
+        <div class="mui-textfield">
+          <input type="hidden" value="NEW" name="status"/>
+        </div>
+        <button class="mui-btn mui-btn--primary mui-btn--raised">Add</button>
+      </form>
+    </div>
+    <div class="todo-list">
+      {%- for msg in messages %}
+        <div class="todo-item todo-item-{{ msg.status|lower }}">
+          <form action="{{ url_for('detail_update', pk=msg.id) }}" method="post">
+            <div class="mui-checkbox">
+              <label>
+                <input type="checkbox" value="" name="checked" onChange="this.form.submit()" {% if msg.status == 'DONE' %} checked {% endif %}>
+              </label>
+            </div>
+          </form>
+          <span class="text">{{ msg.text }}</span>
+          <form action="{{ url_for('detail_delete', pk=msg.id) }}" method="post">
+            <button class="mui-btn mui-btn--danger mui-btn--raised">Remove</button>
+          </form>
+        </div>
+      {%- endfor %}
+    </div>
+  </div>
+</div>
+</body>
+</html>
