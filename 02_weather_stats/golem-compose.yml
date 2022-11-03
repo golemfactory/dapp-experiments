@@ -1,0 +1,24 @@
+meta:
+  name: "Weather Stats App"
+  description: "Application to get Weather, powered by Golem Network"
+  author: "GolemFactory"
+  version: "0.1.0"
+payloads:
+  api:
+    runtime: "vm"
+    params:
+      image_hash: "4b7909d078fbf1c59a1ee2471ab3d7a9933ce72ee6e4b66a1e1e3095"
+nodes:
+  api:
+    payload: "api"
+    init:
+      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 > /webapp/out 2> /webapp/err &"]
+    http_proxy:
+      ports:
+        - "5000"  # specify just the remote port, allow the local port to be automatically chosen
+    network: "default"
+    ip:
+      - "192.168.0.3"
+networks:
+  default:
+    ip: "192.168.0.0/24"
