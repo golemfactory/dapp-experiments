@@ -2,7 +2,7 @@ from weather.openweather.client import OpenWeatherClient
 from weather.schemas import Location, Weather
 
 
-async def get_from_location(latitude: float, longitude: float):
+async def get_from_location(latitude: float, longitude: float) -> Weather:
     async with OpenWeatherClient() as weather_client:
         weather = await weather_client.get_weather(latitude, longitude)
 

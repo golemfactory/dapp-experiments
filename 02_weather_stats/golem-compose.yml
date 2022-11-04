@@ -8,17 +8,31 @@ payloads:
     runtime: "vm"
     params:
       image_hash: "4b7909d078fbf1c59a1ee2471ab3d7a9933ce72ee6e4b66a1e1e3095"
+  app:
+    runtime: "vm"
+    params:
+      image_hash: ""
 nodes:
   api:
     payload: "api"
     init:
-      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 > /webapp/out 2> /webapp/err &"]
+      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 --port 5050 &"]
     http_proxy:
       ports:
-        - "5000"  # specify just the remote port, allow the local port to be automatically chosen
+        - "5050"
     network: "default"
     ip:
       - "192.168.0.3"
+  app:
+    payload: "app"
+    # init:
+    #   - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 --port 5050 &"]
+    http_proxy:
+      ports:
+        - "5060"
+    network: "default"
+    ip:
+      - "192.168.0.4"
 networks:
   default:
     ip: "192.168.0.0/24"

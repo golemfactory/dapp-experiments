@@ -5,14 +5,15 @@ from fastapi import APIRouter, HTTPException
 
 from weather import weather
 from weather.openweather.exceptions import OpenWeatherError
+from weather.schemas import Weather
 
 logger = logging.getLogger(os.path.basename(__file__))
 
-weather_router = APIRouter()
+weather_router: APIRouter = APIRouter()
 
 
 @weather_router.get("")
-async def get_weather(lat: float, long: float):
+async def get_weather(lat: float, long: float) -> Weather:
     try:
         return await weather.get_from_location(lat, long)
     except OpenWeatherError:

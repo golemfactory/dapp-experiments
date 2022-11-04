@@ -1,4 +1,14 @@
+## Generating gvmi image hash
+
+Export dependencies
 ```sh
 poetry export --without-hashes --format=requirements.txt > requirements.txt
 ```
-4b7909d078fbf1c59a1ee2471ab3d7a9933ce72ee6e4b66a1e1e3095
+Use [gvmkit-build](https://golem-network.gitbook.io/golem-sdk-develop/requestor-tutorials/vm-runtime/convert-a-docker-image-into-a-golem-image) to generate a hash
+
+## Running linters and static code analysis
+
+
+```sh
+poetry run sh lint.sh
+```

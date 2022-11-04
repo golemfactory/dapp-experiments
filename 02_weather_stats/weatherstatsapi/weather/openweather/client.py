@@ -1,3 +1,6 @@
+from types import TracebackType
+from typing import Optional, Type
+
 from aiohttp import ClientSession
 from pydantic import ValidationError
 
@@ -10,11 +13,16 @@ class OpenWeatherClient:
 
     _session: ClientSession
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "OpenWeatherClient":
         self._session = ClientSession()
         return self
 
-    async def __aexit__(self, exc_type, exc, tb):
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc: Optional[BaseException],
+        tb: Optional[TracebackType],
+    ) -> None:
         await self._session.close()
 
     async def get_weather(self, latitude: float, longitude: float) -> GetWeatherData:

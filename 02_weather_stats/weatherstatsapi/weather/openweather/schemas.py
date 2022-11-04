@@ -32,6 +32,8 @@ class GetWeatherData(BaseModel):
         country: str
         sunrise: int
         sunset: int
+        id: Optional[int]
+        type: Optional[int]
 
     class _Weather(BaseModel):
         description: str
