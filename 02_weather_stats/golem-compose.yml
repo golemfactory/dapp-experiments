@@ -7,16 +7,20 @@ payloads:
   api:
     runtime: "vm"
     params:
-      image_hash: "d431f9734bf3f398fafa029a18e42fa4feb2f348c5f58820d7604ef2"
+      image_hash: "7d84979dd68fdeffd34f75de22c6e5ec3c9f62239d4048de8d9f46e3"
   app:
     runtime: "vm"
     params:
-      image_hash: "7de39d51bb766e65aa0ce2dd1221d7ddf25224eefe047cc576e31d16"
+      image_hash: "c316c5b8869bbe93f568a55b5b5fabbbe79edf8a2405a24184b16abb"
 nodes:
   api:
     payload: "api"
     init:
-      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 --port 5050 &"]
+      - [
+          "/bin/bash",
+          "-c",
+          "uvicorn weather.app:app --host 192.168.0.3 --port 5050 &",
+        ]
     http_proxy:
       ports:
         - "5050"
@@ -25,11 +29,13 @@ nodes:
       - "192.168.0.3"
   app:
     payload: "app"
-    # init:
-    #   - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 --port 5050 &"]
+    init:
+      - ["/docker-entrypoint.sh"]
+      - ["/bin/chmod", "a+x", "/"]
+      - ["/usr/sbin/nginx"]
     http_proxy:
       ports:
-        - "5060"
+        - "80"
     network: "default"
     ip:
       - "192.168.0.4"
