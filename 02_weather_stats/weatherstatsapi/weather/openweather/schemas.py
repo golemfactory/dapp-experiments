@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -20,10 +20,10 @@ class GetWeatherData(BaseModel):
 
     class _Main(BaseModel):
         feels_like: float
-        grnd_level: float
+        grnd_level: Optional[float]
         humidity: float
         pressure: float
-        sea_level: float
+        sea_level: Optional[float]
         temp: float
         temp_max: float
         temp_min: float
@@ -41,7 +41,7 @@ class GetWeatherData(BaseModel):
 
     class _Wind(BaseModel):
         deg: int
-        gust: float
+        gust: Optional[float]
         speed: float
 
     base: str
