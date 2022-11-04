@@ -7,11 +7,11 @@ payloads:
   api:
     runtime: "vm"
     params:
-      image_hash: "4b7909d078fbf1c59a1ee2471ab3d7a9933ce72ee6e4b66a1e1e3095"
+      image_hash: "d431f9734bf3f398fafa029a18e42fa4feb2f348c5f58820d7604ef2"
   app:
     runtime: "vm"
     params:
-      image_hash: ""
+      image_hash: "7de39d51bb766e65aa0ce2dd1221d7ddf25224eefe047cc576e31d16"
 nodes:
   api:
     payload: "api"
