@@ -19,3 +19,17 @@ poetry run sh lint.sh
 ```sh
 poetry run pytest
 ```
+
+## Running local docker instance
+
+Add [OpenWeather](https://openweathermap.org/) api key to your `.env` file
+
+```.env
+OPEN_WEATHER_APPID=
+```
+
+Start docker container
+
+```sh
+docker compose up --build
+```
