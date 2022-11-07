@@ -1,6 +1,6 @@
 {
-  "short_name": "Damart",
-  "name": "Damart - dashboard",
+  "short_name": "ToDo App",
+  "name": "Golem ToDo Application",
   "icons": [
     {
       "src": "favicon.ico",
