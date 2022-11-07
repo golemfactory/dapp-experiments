@@ -2,16 +2,20 @@ meta:
   name: "ToDo List App"
   description: "Application to store and manage your TODOs, powered by Golem Network"
   author: "GolemFactory"
-  version: "0.1.0"
+  version: "0.2.0"
 payloads:
   db:
     runtime: "vm"
     params:
       image_hash: "85021afecf51687ecae8bdc21e10f3b11b82d2e3b169ba44e177340c"
-  http:
+  api:
     runtime: "vm"
     params:
-      image_hash: "6c24f3616d7581d1e43171c174a54f8dba08fd104784d35b82bc28bd"
+      image_hash: "7df11ba76dc45f3a36d7c0a2efe318abb05384869b45b260471f4be7"
+  web:
+    runtime: "vm"
+    params:
+      image_hash: "2a2e6bd263ececa732d133e1bff2419d79725fe695f1565a3b4a1376"
 nodes:
   db:
     payload: "db"
@@ -22,21 +26,32 @@ nodes:
     network: "default"
     ip:
       - "192.168.0.2"
-  http:
-    payload: "http"
+  api:
+    payload: "api"
     init:
       - run:
           args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 initdb"]
       - run:
           args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 run > /webapp/out 2> /webapp/err &"]
-    http_proxy:
-      ports:
-        - "5000"  # specify just the remote port, allow the local port to be automatically chosen
     network: "default"
     ip:
       - "192.168.0.3"
     depends_on:
       - "db"
+  web:
+    payload: "web"
+    init:
+      - run:
+          args:
+            - "/bin/run_web.sh 192.168.0.3"
+    http_proxy:
+      ports:
+        - "80"  # specify just the remote port, allow the local port to be automatically chosen
+    network: "default"
+    ip:
+      - "192.168.0.4"
+    depends_on:
+      - "api"
 networks:
   default:
     ip: "192.168.0.0/24"
