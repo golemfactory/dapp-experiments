@@ -2,7 +2,15 @@ version: "3.9"
 services:
   api:
     build: .
-    command: uvicorn weather.app:app --host 0.0.0.0 --port 5050
+    command: uvicorn weather.app:app --host 0.0.0.0 --port 5052
     env_file: .env
     ports:
-      - "5050:5050"
+      - "5052:5052"
+    depends_on:
+      - cache
+  cache:
+    image: redis:7.0-bullseye
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81

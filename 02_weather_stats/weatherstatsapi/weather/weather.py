@@ -1,5 +1,20 @@
+import redis.asyncio as redis
+
 from weather.openweather.client import OpenWeatherClient
 from weather.schemas import Location, Weather
+from weather.settings import APP_SETTINGS
+
+
+async def ping_redis() -> str:
+    connection = redis.Redis(
+        host=APP_SETTINGS.redis_host,
+        port=APP_SETTINGS.redis_port,
+        db=APP_SETTINGS.redis_db,
+        password=APP_SETTINGS.redis_password,
+    )
+    result = f"Ping successful: {await connection.ping()}"
+    await connection.close()
+    return result
 
 
 async def get_from_location(latitude: float, longitude: float) -> Weather:

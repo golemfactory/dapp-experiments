@@ -12,9 +12,8 @@ Use [gvmkit-build](https://golem-network.gitbook.io/golem-sdk-develop/requestor-
 
 ```sh
 docker compose build --no-cache
-docker tag weatherstatsapi-api weather-stats-api
-gvmkit-build weather-stats-api
-gvmkit-build weather-stats-api --push
+gvmkit-build weatherstatsapi-api:latest
+gvmkit-build weatherstatsapi-api:latest --push
 ```
 
 ## Running linters and static code analysis
