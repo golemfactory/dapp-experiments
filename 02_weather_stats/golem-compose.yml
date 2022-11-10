@@ -4,31 +4,27 @@ meta:
   author: "GolemFactory"
   version: "0.1.0"
 payloads:
-  api:
-    runtime: "vm"
-    params:
-      image_hash: "a008743eedc5b8dcb8281c12f57a273543621bdb3c264cd89fbbd661"
-  app:
-    runtime: "vm"
-    params:
-      image_hash: "c316c5b8869bbe93f568a55b5b5fabbbe79edf8a2405a24184b16abb"
   cache:
     runtime: "vm"
     params:
       image_hash: "43ea70b47af16647473d1f9115be4deedd8dc3d3cf09e7a91807e2c9"
+  api:
+    runtime: "vm"
+    params:
+      image_hash: "a0858af8f2410c8a7a1ad95e578cc5fafcec64d7007e1cc992e4dc48"
+  app:
+    runtime: "vm"
+    params:
+      image_hash: "c316c5b8869bbe93f568a55b5b5fabbbe79edf8a2405a24184b16abb"
   playground:
     runtime: "vm"
     params:
-      image_hash: "b3eaf408c0f8f906487cf236afec178ddea89f3cd22ed089d2b1f438"
+      image_hash: "d856e8c4493bfa153ff7ff186887073b2b5dacd651fc43c2df826568"
 nodes:
   cache:
     payload: "cache"
     init:
-      - [
-          "/bin/bash",
-          "-c",
-          "redis-server --loglevel debug --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 &",
-        ]
+      - ["/bin/bash", "-c", "redis-server --bind 0.0.0.0 --loglevel debug > /dev/null &"]
     http_proxy:
       ports:
         - "6379"
@@ -38,11 +34,7 @@ nodes:
   api:
     payload: "api"
     init:
-      - [
-          "/bin/bash",
-          "-c",
-          "uvicorn weather.app:app --host 192.168.0.2 --port 5052 &",
-        ]
+      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.2 --port 5052 &",]
     http_proxy:
       ports:
         - "5052"
@@ -64,16 +56,14 @@ nodes:
   playground:
     payload: "playground"
     init:
-      - ["/bin/bash", "-c", "redis-cli -h 192.168.0.1 -a eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 ping > /playground/out.txt 2> /playground/err.txt &"]
-      - ["/bin/bash", "-c", "uvicorn playground.app:app --host 192.168.0.4 --port 5070 &"]
+      - ["/bin/bash", "-c", "redis-server --bind 0.0.0.0 --loglevel debug > /dev/null &"]
+      - ["/bin/bash", "-c", "uvicorn playground.app:app --host 192.168.0.4 --port 5054 &"]
     http_proxy:
       ports:
         - "5054"
     network: "default"
     ip:
       - "192.168.0.4"
-    depends_on:
-      - "cache"
 networks:
   default:
     ip: "192.168.0.0/24"

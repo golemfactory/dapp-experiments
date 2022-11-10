@@ -1,4 +1,4 @@
-import redis.asyncio as redis
+import redis
 
 from weather.openweather.client import OpenWeatherClient
 from weather.schemas import Location, Weather
@@ -10,10 +10,10 @@ async def ping_redis() -> str:
         host=APP_SETTINGS.redis_host,
         port=APP_SETTINGS.redis_port,
         db=APP_SETTINGS.redis_db,
-        password=APP_SETTINGS.redis_password,
+        # password=APP_SETTINGS.redis_password,
     )
-    result = f"Ping successful: {await connection.ping()}"
-    await connection.close()
+    result = f"Ping successful: {connection.ping()}"
+    connection.close()
     return result
 
 

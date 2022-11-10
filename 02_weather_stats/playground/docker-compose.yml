@@ -1,17 +1,7 @@
 version: "3.9"
 services:
-  api:
+  redispython:
     build: .
-    command: >
-      bash -c "redis-cli -p 8079 -h cache -a eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 ping > /playground/out.txt 2> /playground/err.txt
-      && uvicorn playground.app:app --host 0.0.0.0 --port 5054"
+    command: uvicorn playground.app:app --host 0.0.0.0 --port 5054
     ports:
       - "5054:5054"
-    depends_on:
-      - cache
-  cache:
-    image: redis:7.0-bullseye
-    restart: always
-    ports:
-      - '8079:8079'
-    command: redis-server --port 8079 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81

@@ -1,21 +1,22 @@
 from typing import Dict
 
-from fastapi import FastAPI
+import redis
 
+from fastapi import FastAPI
 
 app = FastAPI()
 
 
-def get_file(name) -> str:
-    with open(name, "r") as file:
-        content = file.readlines()
-    return content
+def ping_redis() -> str:
+    connection = redis.Redis()  # localhost:6379 no pw
+    result = f"Ping successful: {connection.ping()}"
+    connection.close()
+    return result
+
 
 @app.get("/")
-async def health_check() -> Dict[str, str]:
+def health_check() -> Dict[str, str]:
     try:
-        return {"Out": f"{get_file('/playground/out.txt')}", "Err": f"{get_file('/playground/err.txt')}"}
+        return {"Ping": ping_redis()}
     except Exception as err:
         return {"Exception": f"{err}"}
-
-
