@@ -9,12 +9,22 @@ services:
     ports:
       - 4001:4001
 
-  http:
-    build: http
-    image: todo-app-http:latest
+  api:
+    build: api
+    image: todo-app-api:latest
     command:
-      - /webapp/run_http.sh
+      - /webapp/run_api.sh
     depends_on:
       - db
     ports:
       - 5000:5000
+
+  web:
+    build: web
+    image: todo-app-web:latest
+    command:
+      - /bin/run_web.sh
+    depends_on:
+      - api
+    ports:
+      - 3000:80

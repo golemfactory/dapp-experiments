@@ -1,5 +1,5 @@
 import argparse
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 parser = argparse.ArgumentParser("simple flask app")
@@ -27,19 +27,22 @@ class ToDo(db.Model):
     status = db.Column(db.String(255))
 
 
-@app.route("/", methods=["get"])
+@app.route("/api/list", methods=["get"])
 def root_get():
-    return render_template("index.html", messages=list(ToDo.query.filter_by(status="NEW").order_by(ToDo.id.desc())) + list(ToDo.query.filter_by(status="DONE").order_by(ToDo.id.desc())))
+    return list(map(
+        lambda item: {"id": item.id, "text": item.text, "status": item.status},
+        list(ToDo.query.filter_by(status="NEW").order_by(ToDo.id.desc())) + list(ToDo.query.filter_by(status="DONE").order_by(ToDo.id.desc()))
+    ))
 
 
-@app.route("/", methods=["post"])
+@app.route("/api/add", methods=["post"])
 def root_post():
     db.session.add(ToDo(text=request.form["text"], status=request.form["status"]))
     db.session.commit()
     return redirect(url_for("root_get"))
 
 
-@app.route("/<pk>/update", methods=["post"])
+@app.route("/api/<pk>/update", methods=["post"])
 def detail_update(pk):
     todo = ToDo.query.filter_by(id=pk).first()
     todo.status = "NEW" if todo.status != "NEW" else "DONE"
@@ -47,7 +50,7 @@ def detail_update(pk):
     return redirect(url_for("root_get"))
 
 
-@app.route("/<pk>/delete", methods=["post"])
+@app.route("/api/<pk>/delete", methods=["post"])
 def detail_delete(pk):
     ToDo.query.filter_by(id=pk).delete()
     db.session.commit()
