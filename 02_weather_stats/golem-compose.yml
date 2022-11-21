@@ -11,11 +11,11 @@ payloads:
   api:
     runtime: "vm"
     params:
-      image_hash: "a0858af8f2410c8a7a1ad95e578cc5fafcec64d7007e1cc992e4dc48"
+      image_hash: "a5ffd7617161bcabff57cd668c95fd3366a19fe3556a5a7e9dd77003"
   app:
     runtime: "vm"
     params:
-      image_hash: "c316c5b8869bbe93f568a55b5b5fabbbe79edf8a2405a24184b16abb"
+      image_hash: "6f78afcbc7c76752cbc5366dda8ee1f3865aeccbe329f1c48fd00ec3"
   playground:
     runtime: "vm"
     params:
@@ -24,23 +24,23 @@ nodes:
   cache:
     payload: "cache"
     init:
-      - ["/bin/bash", "-c", "redis-server --bind 0.0.0.0 --loglevel debug > /dev/null &"]
+      - ["/bin/bash", "-c", "redis-server --bind 0.0.0.0 --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --loglevel debug > /dev/null &"]
     http_proxy:
       ports:
         - "6379"
     network: "default"
     ip:
-      - "192.168.0.1"
+      - "192.168.0.2"
   api:
     payload: "api"
     init:
-      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.2 --port 5052 &",]
+      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 --port 5053 &",]
     http_proxy:
       ports:
-        - "5052"
+        - "5053"
     network: "default"
     ip:
-      - "192.168.0.2"
+      - "192.168.0.3"
   app:
     payload: "app"
     init:
@@ -50,17 +50,6 @@ nodes:
     http_proxy:
       ports:
         - "80"
-    network: "default"
-    ip:
-      - "192.168.0.3"
-  playground:
-    payload: "playground"
-    init:
-      - ["/bin/bash", "-c", "redis-server --bind 0.0.0.0 --loglevel debug > /dev/null &"]
-      - ["/bin/bash", "-c", "uvicorn playground.app:app --host 192.168.0.4 --port 5054 &"]
-    http_proxy:
-      ports:
-        - "5054"
     network: "default"
     ip:
       - "192.168.0.4"

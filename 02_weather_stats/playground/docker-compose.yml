@@ -1,7 +1,0 @@
-version: "3.9"
-services:
-  redispython:
-    build: .
-    command: uvicorn playground.app:app --host 0.0.0.0 --port 5054
-    ports:
-      - "5054:5054"

@@ -10,7 +10,7 @@ async def ping_redis() -> str:
         host=APP_SETTINGS.redis_host,
         port=APP_SETTINGS.redis_port,
         db=APP_SETTINGS.redis_db,
-        # password=APP_SETTINGS.redis_password,
+        password=APP_SETTINGS.redis_password,
     )
     result = f"Ping successful: {connection.ping()}"
     connection.close()
