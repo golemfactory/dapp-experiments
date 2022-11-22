@@ -3,7 +3,7 @@ from typing import Dict
 from fastapi import FastAPI
 
 from weather.api.routes import weather_router
-from weather.weather import ping_redis
+from weather.cache import RedisCache
 
 app = FastAPI()
 
@@ -11,9 +11,12 @@ app = FastAPI()
 @app.get("/api")
 async def health_check() -> Dict[str, str]:
     try:
-        return {"Health Check": await ping_redis()}
+        return {
+            "msg": "ok",
+            "redis connection": f"{await RedisCache.is_connection_up()}",
+        }
     except Exception as err:
-        return {"Health Check": f"{err}"}
+        return {"msg": f"{err}"}
 
 
 app.include_router(

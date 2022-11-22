@@ -11,15 +11,11 @@ payloads:
   api:
     runtime: "vm"
     params:
-      image_hash: "a5ffd7617161bcabff57cd668c95fd3366a19fe3556a5a7e9dd77003"
+      image_hash: "e56713b592b611da1a99b1a0a55476642cfbbda47ad3107aea60e4a1"
   app:
     runtime: "vm"
     params:
       image_hash: "6f78afcbc7c76752cbc5366dda8ee1f3865aeccbe329f1c48fd00ec3"
-  playground:
-    runtime: "vm"
-    params:
-      image_hash: "d856e8c4493bfa153ff7ff186887073b2b5dacd651fc43c2df826568"
 nodes:
   cache:
     payload: "cache"

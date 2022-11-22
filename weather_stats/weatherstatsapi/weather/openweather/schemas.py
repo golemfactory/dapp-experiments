@@ -29,7 +29,7 @@ class GetWeatherData(BaseModel):
         temp_min: float
 
     class _Sys(BaseModel):
-        country: str
+        country: Optional[str]
         sunrise: int
         sunset: int
         id: Optional[int]
