@@ -8,6 +8,8 @@ class OpenWeatherSettings(BaseSettings):
 
     class Config:
         env_prefix = "OPEN_WEATHER_"
+        env_file = ".api-env"
+        env_file_encoding = "utf-8"
 
 
 OPEN_WEATHER_SETTINGS = OpenWeatherSettings()

@@ -25,6 +25,13 @@ class OpenWeatherClient:
     ) -> None:
         await self._session.close()
 
+    async def head_status(self) -> int:
+        async with self._session.get(
+            OPEN_WEATHER_SETTINGS.base_url,
+            params={"appid": OPEN_WEATHER_SETTINGS.appid},
+        ) as response:
+            return response.status
+
     async def get_weather(self, latitude: float, longitude: float) -> GetWeatherData:
         params = GetWeatherParams(
             lon=longitude,
