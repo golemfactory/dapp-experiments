@@ -1,0 +1,32 @@
+meta:
+  name: "Weather Stats App"
+  description: "Application to get Weather, powered by Golem Network"
+  author: "GolemFactory"
+  version: "0.1.0"
+payloads:
+  api:
+    runtime: "vm/manifest"
+    params:
+      manifest: "ewogICAgInZlcnNpb24iOiAiMC4xLjAiLAogICAgImNyZWF0ZWRBdCI6ICIyMDIyLTA3LTI2VDEyOjUxOjAwLjAwMDAwMFoiLAogICAgImV4cGlyZXNBdCI6ICIyMTAwLTAxLTAxVDAwOjAxOjAwLjAwMDAwMFoiLAogICAgIm1ldGFkYXRhIjogewogICAgICAgICJuYW1lIjogIldlYXRoZXIgU3RhdHMgQXBwIiwKICAgICAgICAiZGVzY3JpcHRpb24iOiAiQXBwbGljYXRpb24gdG8gZ2V0IFdlYXRoZXIsIHBvd2VyZWQgYnkgR29sZW0gTmV0d29yayIsCiAgICAgICAgInZlcnNpb24iOiAiMC4xLjAiCiAgICB9LAogICAgInBheWxvYWQiOiBbCiAgICAgICAgewogICAgICAgICAgICAicGxhdGZvcm0iOiB7CiAgICAgICAgICAgICAgICAiYXJjaCI6ICJ4ODZfNjQiLAogICAgICAgICAgICAgICAgIm9zIjogImxpbnV4IgogICAgICAgICAgICB9LAogICAgICAgICAgICAidXJscyI6IFsKICAgICAgICAgICAgICAgICJodHRwOi8veWFjbjIuZGV2LmdvbGVtLm5ldHdvcms6ODAwMC9kb2NrZXItd2VhdGhlcnN0YXRzYXBpLWFwaS1sYXRlc3QtOGY1NzRjNTQ0YS5ndm1pIgogICAgICAgICAgICBdLAogICAgICAgICAgICAiaGFzaCI6ICJzaGEzOjZlMWIxY2Y1MDdhMjYzNmZjY2U2MWE2NzY0NjY5N2U1ZGQ2NGQxYzg5MDdkMDQyZThiYTM4NjNmIgogICAgICAgIH0KICAgIF0sCiAgICAiY29tcE1hbmlmZXN0IjogewogICAgICAgICJ2ZXJzaW9uIjogIjAuMS4wIiwKICAgICAgICAic2NyaXB0IjogewogICAgICAgICAgICAiY29tbWFuZHMiOiBbCiAgICAgICAgICAgICAgICAicnVuIC4qdXZpY29ybi4qIgogICAgICAgICAgICBdLAogICAgICAgICAgICAibWF0Y2giOiAicmVnZXgiCiAgICAgICAgfSwKICAgICAgICAibmV0IjogewogICAgICAgICAgICAiaW5ldCI6IHsKICAgICAgICAgICAgICAgICJvdXQiOiB7CiAgICAgICAgICAgICAgICAgICAgInByb3RvY29scyI6IFtdLAogICAgICAgICAgICAgICAgICAgICJ1cmxzIjogW10KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KfQ=="
+      capabilities:
+        - inet
+        - manifest-support
+        - vpn
+nodes:
+  api:
+    payload: "api"
+    init:
+      - [
+          "/bin/bash",
+          "-c",
+          "uvicorn weather.app:app --host 192.168.0.3 --port 5053 &",
+        ]
+    http_proxy:
+      ports:
+        - "5053"
+    network: "default"
+    ip:
+      - "192.168.0.3"
+networks:
+  default:
+    ip: "192.168.0.0/24"

@@ -11,7 +11,7 @@ payloads:
   api:
     runtime: "vm"
     params:
-      image_hash: "e56713b592b611da1a99b1a0a55476642cfbbda47ad3107aea60e4a1"
+      image_hash: "6e1b1cf507a2636fcce61a67646697e5dd64d1c8907d042e8ba3863f"
   app:
     runtime: "vm"
     params:
@@ -20,7 +20,11 @@ nodes:
   cache:
     payload: "cache"
     init:
-      - ["/bin/bash", "-c", "redis-server --bind 0.0.0.0 --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --loglevel debug > /dev/null &"]
+      - [
+          "/bin/bash",
+          "-c",
+          "redis-server --bind 0.0.0.0 --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --loglevel debug > /dev/null &",
+        ]
     http_proxy:
       ports:
         - "6379"
@@ -30,7 +34,11 @@ nodes:
   api:
     payload: "api"
     init:
-      - ["/bin/bash", "-c", "uvicorn weather.app:app --host 192.168.0.3 --port 5053 &",]
+      - [
+          "/bin/bash",
+          "-c",
+          "uvicorn weather.app:app --host 192.168.0.3 --port 5053 &",
+        ]
     http_proxy:
       ports:
         - "5053"

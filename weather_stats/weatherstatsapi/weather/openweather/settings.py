@@ -3,7 +3,7 @@ from yarl import URL
 
 
 class OpenWeatherSettings(BaseSettings):
-    base_url: URL = URL("https://api.openweathermap.org/data/2.5")
+    base_url: URL = URL("http://api.openweathermap.org/data/2.5")
     appid: str = ""
 
     class Config:

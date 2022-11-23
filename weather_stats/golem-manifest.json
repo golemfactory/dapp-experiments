@@ -1,0 +1,39 @@
+{
+    "version": "0.1.0",
+    "createdAt": "2022-07-26T12:51:00.000000Z",
+    "expiresAt": "2100-01-01T00:01:00.000000Z",
+    "metadata": {
+        "name": "Weather Stats App",
+        "description": "Application to get Weather, powered by Golem Network",
+        "version": "0.1.0"
+    },
+    "payload": [
+        {
+            "platform": {
+                "arch": "x86_64",
+                "os": "linux"
+            },
+            "urls": [
+                "http://yacn2.dev.golem.network:8000/docker-weatherstatsapi-api-latest-8f574c544a.gvmi"
+            ],
+            "hash": "sha3:6e1b1cf507a2636fcce61a67646697e5dd64d1c8907d042e8ba3863f"
+        }
+    ],
+    "compManifest": {
+        "version": "0.1.0",
+        "script": {
+            "commands": [
+                "run .*uvicorn.*"
+            ],
+            "match": "regex"
+        },
+        "net": {
+            "inet": {
+                "out": {
+                    "protocols": [],
+                    "urls": []
+                }
+            }
+        }
+    }
+}
