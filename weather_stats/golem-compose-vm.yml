@@ -11,7 +11,7 @@ payloads:
   api:
     runtime: "vm"
     params:
-      image_hash: "6e1b1cf507a2636fcce61a67646697e5dd64d1c8907d042e8ba3863f"
+      image_hash: "39c5765857eb2b0e690f7fabe8eec319bc0eee24aee0fb317ddb4110"
   app:
     runtime: "vm"
     params:

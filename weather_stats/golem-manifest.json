@@ -14,9 +14,9 @@
                 "os": "linux"
             },
             "urls": [
-                "http://yacn2.dev.golem.network:8000/docker-weatherstatsapi-api-latest-8f574c544a.gvmi"
+                "http://yacn2.dev.golem.network:8000/docker-weatherstatsapi-api-latest-5b210ea2f3.gvmi"
             ],
-            "hash": "sha3:6e1b1cf507a2636fcce61a67646697e5dd64d1c8907d042e8ba3863f"
+            "hash": "sha3:39c5765857eb2b0e690f7fabe8eec319bc0eee24aee0fb317ddb4110"
         }
     ],
     "compManifest": {
