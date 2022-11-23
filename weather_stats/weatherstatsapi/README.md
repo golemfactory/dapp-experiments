@@ -2,9 +2,9 @@
 
 ## Generating gvmi image hash
 
-Export dependencies
-
 Add [OpenWeather](https://openweathermap.org/) api key to your `.api-env` file
+
+Export dependencies
 
 ```sh
 poetry export --without-hashes --format=requirements.txt > requirements.txt
@@ -39,6 +39,12 @@ OPEN_WEATHER_APPID=
 APP_REDIS_HOST=cache
 APP_REDIS_PORT=6379
 APP_REDIS_PASSWORD=
+```
+
+Create network
+
+```sh
+docker network create weather-stats
 ```
 
 Start docker container

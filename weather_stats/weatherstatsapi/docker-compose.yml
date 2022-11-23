@@ -14,3 +14,8 @@ services:
     ports:
       - '6379:6379'
     command: redis-server --loglevel warning --requirepass redispw
+  
+networks: 
+  default: 
+    external: 
+      name: weather-stats
