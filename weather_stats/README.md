@@ -1,25 +1,26 @@
 # Weather Stats
 
-This application is showcasing how to use Golem Network to TODO
+This application is showcasing how to use Golem Network with access to external services (not hosted on Golem) using outbound mechanism.
+
+![weather-stats-c4-lv2-containers](https://user-images.githubusercontent.com/11493087/203728884-3d506a1b-9f40-4c61-869d-207ef6061e1f.jpg)
 
 The app itself is written without any Golem context in mind, with full dockerization and compose support.
 Only Golem-specific files are:
 
-- **`golem-compose-vm.yml`** to define the application-specific Golem config (image hashes, capabilities, init commands)
-- **`golem-compose-vm.yml`** to define the application-specific Golem config (image hashes, capabilities, init commands)
-- **`golem-compose-maifest.yml`** TODO
-- **`golem-maifest.json`** TODO
+- **`golem-compose-vm.yml`** defines Golem config required to run the application using image_hash (no outbound functionalities)
+- **`golem-config.yml`** defines the runtime-specific Golem config (yagna appkey, subnet, budget)
+- **`golem-compose-maifest.yml`** defines Golem config required to run the application using encoded manifest (with outbound functionalities)
+- **`golem-maifest.json`** input content used to create encoded manifest payload. For more information see this [section](#running-api-with-golem-manifestjson)
 
 ## Setup
 
-This section will walk through the app setup for running the already built app on Golem. If you'd like to modify it and
-run customized version, please follow the [development guide](#development)
+This section will walk through the app setup for running the already built app on Golem.
 
 ### Install and run yagna daemon
 
 To install the yagna daemon, run the following command:
 
-```
+```sh
 curl -ksSf https://join.golem.network/as-requestor | YA_INSTALLER_CORE=v0.11.0 bash -
 ```
 
@@ -28,7 +29,7 @@ your daemon might be outdated (it's safe to run it multiple times, will abort if
 
 To run the daemon itself, run the following command:
 
-```
+```sh
 YA_NET_RELAY_HOST=yacn2a.dev.golem.network:7477 yagna service run
 ```
 
@@ -39,20 +40,20 @@ The environment variable, `YA_NET_RELAY_HOST`, is required for Hybrid network to
 The yagna daemon needs some commands to be run in order to work properly as a requestor.
 First, in a separate terminal window, we initiate the payment driver by running the following command:
 
-```
+```sh
 # in separate window
 $ yagna payment init --sender
 ```
 
 Next, we need to obtain the application key for runtime config. You can check if you have a key already created by calling
 
-```
+```sh
 yagna app-key list
 ```
 
 **If you don't have a key**, please run the following command to create a new one
 
-```
+```sh
 yagna app-key create <key_name>
 ```
 
@@ -60,27 +61,27 @@ yagna app-key create <key_name>
 
 Having the above setup complete, run the application with the following command (substituting `<your_key>` with an actual key you've obtained in the previous section):
 
-```
+```sh
 YAGNA_APPKEY=<your_key> dapp-runner start --config golem-config.yml golem-compose-vm.yml
 ```
 
 After running this command, besides debug logs, you should look for the following entries
 
-```
-Starting app: ToDo List App
+```sh
+Starting app: Weather Stats App
 
-{"db": {"0": "pending"}}
-{"db": {"0": "starting"}}
-{"db": {"0": "running"}}
-{"db": {"0": "running"}, "api": {"0": "pending"}}
-{"db": {"0": "running"}, "api": {"0": "starting"}}
-{"db": {"0": "running"}, "api": {"0": "running"}}
-{"db": {"0": "running"}, "api": {"0": "running"}, "web": {"0": "pending"}}
-{"db": {"0": "running"}, "api": {"0": "running"}, "web": {"0": "starting"}}
-{"db": {"0": "running"}, "api": {"0": "running"}, "web": {"0": "running"}}
+{"cache": {"0": "pending"}}
+{"cache": {"0": "starting"}}
+{"cache": {"0": "running"}}
+{"cache": {"0": "running"}, "api": {"0": "pending"}}
+{"cache": {"0": "running"}, "api": {"0": "starting"}}
+{"cache": {"0": "running"}, "api": {"0": "running"}}
+{"cache": {"0": "running"}, "api": {"0": "running"}, "app": {"0": "pending"}}
+{"cache": {"0": "running"}, "api": {"0": "running"}, "app": {"0": "starting"}}
+{"cache": {"0": "running"}, "api": {"0": "running"}, "app": {"0": "running"}}
 
 [2022-11-10T10:52:39.306+0100 INFO dapp_runner.runner] Application started.
-{"web": {"local_proxy_address": "http://localhost:8081"}}
+{"app": {"local_proxy_address": "http://localhost:8082"}}
 ```
 
 To see the app in action, follow the link provided in `local_proxy_address` variable (the port may be different from `8081` as it's dynamically assigned)

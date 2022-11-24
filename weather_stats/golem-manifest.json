@@ -30,8 +30,12 @@
         "net": {
             "inet": {
                 "out": {
-                    "protocols": [],
-                    "urls": []
+                    "protocols": [
+                        "https"
+                    ],
+                    "urls": [
+                        "https://geth.golem.network"
+                    ]
                 }
             }
         }
