@@ -26,16 +26,11 @@ function setResultList(parsedResult) {
             }
             event.target.classList.add('active');
             const clickedData = JSON.parse(event.target.innerHTML);
-            $.ajax({
-                type: 'GET',
-                url: `/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`,
-                dataType: 'json',
-                success: function (result) {
-                    console.log(result);
-                    $("#address").text(result.location.address);
-                    $("#temperature").text(result.temperature);
-                }
-            })
+            fetch('/api/v1/weather?lat='+clickedData.lat+'&long='+clickedData.lon)
+            .then(result => result.json())
+            .then(parsedResult => {
+                document.getElementById('weather').innerHTML = JSON.stringify(parsedResult, undefined, 2);
+            });
         })
         resultList.appendChild(li);
     }
