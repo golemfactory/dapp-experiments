@@ -7,9 +7,8 @@ This application is showcasing how to use Golem Network with access to external 
 The app itself is written without any Golem context in mind, with full dockerization and compose support.
 Only Golem-specific files are:
 
-- **`golem-compose-vm.yml`** defines Golem config required to run the application using image_hash (no outbound functionalities)
 - **`golem-config.yml`** defines the runtime-specific Golem config (yagna appkey, subnet, budget)
-- **`golem-compose-maifest.yml`** defines Golem config required to run the application using encoded manifest (with outbound functionalities)
+- **`golem-compose.yml`** defines Golem config required to run the application using encoded manifest (with outbound functionalities)
 - **`golem-maifest.json`** input content used to create encoded manifest payload. For more information see this [section](#running-api-with-golem-manifestjson)
 
 ## Setup
@@ -62,7 +61,7 @@ yagna app-key create <key_name>
 Having the above setup complete, run the application with the following command (substituting `<your_key>` with an actual key you've obtained in the previous section):
 
 ```sh
-YAGNA_APPKEY=<your_key> dapp-runner start --config golem-config.yml golem-compose-vm.yml
+YAGNA_APPKEY=<your_key> dapp-runner start --config golem-config.yml golem-compose.yml
 ```
 
 After running this command, besides debug logs, you should look for the following entries
@@ -99,7 +98,7 @@ encoded_manifest = base64.b64encode(manifest).decode("ascii")
 print(encoded_manifest)
 ```
 
-Having encoded manifest open the [golem-compose-manifest.yml](golem-compose-manifest.yml) file and update the `manifest` definition with the encoded manifest
+Having encoded manifest open the [golem-compose.yml](golem-compose.yml) file and update the `manifest` definition with the encoded manifest
 
 ```diff
 payloads:
@@ -112,10 +111,4 @@ payloads:
         - inet
         - manifest-support
         - vpn
-```
-
-Start Weather Stats using [golem-compose-manifest.yml](golem-compose-manifest.yml)
-
-```sh
-YAGNA_APPKEY=<your_key> dapp-runner start --config golem-config.yml golem-compose-manifest.yml
 ```
