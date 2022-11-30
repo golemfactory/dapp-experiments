@@ -31,10 +31,11 @@
             "inet": {
                 "out": {
                     "protocols": [
-                        "https"
+                        "https",
+                        "http"
                     ],
                     "urls": [
-                        "https://geth.golem.network"
+                        "http://api.openweathermap.org"
                     ]
                 }
             }
