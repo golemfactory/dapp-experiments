@@ -18,7 +18,7 @@ async def get_weather(lat: float, long: float) -> Weather:
         return await weather.get_from_location(lat, long)
     except OpenWeatherError:
         logger.warning("OpenWeatherError when getting weather", exc_info=True)
-        raise HTTPException(status_code=502, detail="Unable to get weather")
+        raise HTTPException(status_code=502, detail="Unable to obtain weather data.")
     except Exception as err:
         raise HTTPException(
             status_code=502,
