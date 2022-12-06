@@ -5,18 +5,12 @@
 Use [gvmkit-build](https://golem-network.gitbook.io/golem-sdk-develop/requestor-tutorials/vm-runtime/convert-a-docker-image-into-a-golem-image) to generate a hash
 
 ```sh
-docker compose build --no-cache
-gvmkit-build weatherstatsapp-app:latest
-gvmkit-build weatherstatsapp-app:latest --push
+docker compose build
+gvmkit-build weather_stats-app:latest
+gvmkit-build weather_stats-app:latest --push
 ```
 
 ## Running local docker instance
-
-Create network
-
-```sh
-docker network create weather-stats
-```
 
 Replace [nginx](nginx.conf) proxy_pass configuration
 

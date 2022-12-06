@@ -1,50 +1,40 @@
 # Weather Stats
 
-This application is showcasing how to use Golem Network with access to external services (not hosted on Golem) using outbound mechanism.
+This application is showcasing how to use Golem Network with access to external services (not hosted on Golem) using outbound network connections.
 
 ![weather-stats-c4-lv2-containers](https://user-images.githubusercontent.com/11493087/203728884-3d506a1b-9f40-4c61-869d-207ef6061e1f.jpg)
 
-The app itself is written without any Golem context in mind, with full dockerization and compose support.
-Only Golem-specific files are:
+The app itself is written as a regular web application, implemented as a set of Docker containers, without any up-front Golem context in mind.
+The only Golem-specific files are:
 
 - **`golem-config.yml`** defines the runtime-specific Golem config (yagna appkey, subnet, budget)
-- **`golem-compose.yml`** defines Golem config required to run the application using encoded manifest (with outbound functionalities)
-- **`golem-maifest.json`** input content used to create encoded manifest payload. For more information see this [section](#running-api-with-golem-manifestjson)
+- **`golem-compose.yml`** defines the structure of the Golem application. It uses an encoded manifest file for one of the containers in order to enable outbound network access.
+- **`golem-maifest.json`** the manifest file used to enable outbound network access. It needs to be encoded in order to be included in the application descriptor, and signed to enable network access to a specific external address. For more information see this [section](#running-api-with-golem-manifestjson)
 
 ## Setup
 
-This section will walk through the app setup for running the already built app on Golem.
+This section will walk through the steps required to run the already-built app on Golem.
 
 ### Install and run yagna daemon
 
 To install the yagna daemon, run the following command:
 
 ```sh
-curl -ksSf https://join.golem.network/as-requestor | YA_INSTALLER_CORE=v0.11.0 bash -
+curl -ksSf https://join.golem.network/as-requestor | YA_INSTALLER_CORE=v0.12.0 bash -
 ```
 
-**Application doesn't work on daemon versions lower than v0.11.0**, so please make sure to run this command if you think
+**Application doesn't work on daemon versions lower than v0.12.0**, so please make sure to run this command if you think
 your daemon might be outdated (it's safe to run it multiple times, will abort if already installed)
 
 To run the daemon itself, run the following command:
 
 ```sh
-YA_NET_RELAY_HOST=yacn2a.dev.golem.network:7477 yagna service run
+yagna service run
 ```
-
-The environment variable, `YA_NET_RELAY_HOST`, is required for Hybrid network to be used (which is required for this app)
 
 ### Configure yagna daemon
 
-The yagna daemon needs some commands to be run in order to work properly as a requestor.
-First, in a separate terminal window, we initiate the payment driver by running the following command:
-
-```sh
-# in separate window
-$ yagna payment init --sender
-```
-
-Next, we need to obtain the application key for runtime config. You can check if you have a key already created by calling
+To use the running daemon as a requestor, we need to obtain an application key. You can check if you have a key already created by calling
 
 ```sh
 yagna app-key list

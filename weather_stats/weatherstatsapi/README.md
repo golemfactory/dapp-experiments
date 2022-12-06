@@ -13,9 +13,9 @@ poetry export --without-hashes --format=requirements.txt > requirements.txt
 Use [gvmkit-build](https://golem-network.gitbook.io/golem-sdk-develop/requestor-tutorials/vm-runtime/convert-a-docker-image-into-a-golem-image) to generate a hash
 
 ```sh
-docker compose build --no-cache
-gvmkit-build weatherstatsapi-api:latest
-gvmkit-build weatherstatsapi-api:latest --push
+docker compose build
+gvmkit-build weather_stats-api:latest
+gvmkit-build weather_stats-api:latest --push
 ```
 
 ## Running linters and static code analysis

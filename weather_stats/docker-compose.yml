@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   api:
-    build: .
+    build:
+      context: ./weatherstatsapi
+      dockerfile: Dockerfile
     command: uvicorn weather.app:app --host 0.0.0.0 --port 5052
     env_file: .env
     ports:
@@ -14,8 +16,10 @@ services:
     ports:
       - '6379:6379'
     command: redis-server --loglevel warning --requirepass redispw
-  
-networks: 
-  default: 
-    external: 
-      name: weather-stats
+  app:
+    build:
+      context: ./weatherstatsapp
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+

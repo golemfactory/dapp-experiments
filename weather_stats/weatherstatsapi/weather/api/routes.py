@@ -22,5 +22,5 @@ async def get_weather(lat: float, long: float) -> Weather:
     except Exception as err:
         raise HTTPException(
             status_code=502,
-            detail=f"Error when trying to get weather: {err} {type(err)}",
+            detail=f"Error when trying to get weather data: {err} {type(err)}",
         )
