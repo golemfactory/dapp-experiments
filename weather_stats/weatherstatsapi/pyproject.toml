@@ -52,3 +52,6 @@ ignore_missing_imports = true
 
 [tool.flake8]
 exclude = [".venv","__pycache__"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

@@ -11,10 +11,10 @@ from weather.openweather.settings import OPEN_WEATHER_SETTINGS
 
 class OpenWeatherClient:
 
-    _session: ClientSession
+    __session: ClientSession
 
     async def __aenter__(self) -> "OpenWeatherClient":
-        self._session = ClientSession()
+        self.__session = ClientSession()
         return self
 
     async def __aexit__(
@@ -23,7 +23,14 @@ class OpenWeatherClient:
         exc: Optional[BaseException],
         tb: Optional[TracebackType],
     ) -> None:
-        await self._session.close()
+        await self.__session.close()
+    
+    @property
+    def _session(self) -> ClientSession:
+        try:
+            return self.__session
+        except AttributeError as err:
+            raise OpenWeatherError("Open Weather Client was not initialized correctly") from err
 
     async def head_status(self) -> int:
         async with self._session.get(
