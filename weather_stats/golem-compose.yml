@@ -1,0 +1,70 @@
+meta:
+  name: "Weather Stats App"
+  description: "Application to get Weather, powered by Golem Network"
+  author: "GolemFactory"
+  version: "0.1.0"
+payloads:
+  cache:
+    runtime: "vm"
+    params:
+      image_hash: "43ea70b47af16647473d1f9115be4deedd8dc3d3cf09e7a91807e2c9"
+  api:
+    runtime: "vm/manifest"
+    params:
+      capabilities:
+        - inet
+        - manifest-support
+        - vpn
+      manifest: eyJ2ZXJzaW9uIjoiMC4xLjAiLCJjcmVhdGVkQXQiOiIyMDIyLTA3LTI2VDEyOjUxOjAwLjAwMDAwMFoiLCJleHBpcmVzQXQiOiIyMTAwLTAxLTAxVDAwOjAxOjAwLjAwMDAwMFoiLCJtZXRhZGF0YSI6eyJuYW1lIjoiV2VhdGhlciBTdGF0cyBBcHAiLCJkZXNjcmlwdGlvbiI6IkFwcGxpY2F0aW9uIHRvIGdldCBXZWF0aGVyLCBwb3dlcmVkIGJ5IEdvbGVtIE5ldHdvcmsiLCJ2ZXJzaW9uIjoiMC4xLjAifSwicGF5bG9hZCI6W3sicGxhdGZvcm0iOnsiYXJjaCI6Ing4Nl82NCIsIm9zIjoibGludXgifSwidXJscyI6WyJodHRwOi8veWFjbjIuZGV2LmdvbGVtLm5ldHdvcms6ODAwMC9kb2NrZXItd2VhdGhlcnN0YXRzYXBpLWFwaS1sYXRlc3QtNWIyMTBlYTJmMy5ndm1pIl0sImhhc2giOiJzaGEzOjM5YzU3NjU4NTdlYjJiMGU2OTBmN2ZhYmU4ZWVjMzE5YmMwZWVlMjRhZWUwZmIzMTdkZGI0MTEwIn1dLCJjb21wTWFuaWZlc3QiOnsidmVyc2lvbiI6IjAuMS4wIiwic2NyaXB0Ijp7ImNvbW1hbmRzIjpbInJ1biAuKnV2aWNvcm4uKiJdLCJtYXRjaCI6InJlZ2V4In0sIm5ldCI6eyJpbmV0Ijp7Im91dCI6eyJwcm90b2NvbHMiOlsiaHR0cHMiLCJodHRwIl0sInVybHMiOlsiaHR0cDovL2FwaS5vcGVud2VhdGhlcm1hcC5vcmciXX19fX19Cg==
+      # certificate used to sign the manifest will expire at 24.12.2022
+      manifest_cert: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUIvekNDQVlXZ0F3SUJBZ0lVTCtzbFdPYUN5cEMwK1ZaTTk2Vk1XM2xOM1Jrd0NnWUlLb1pJemowRUF3SXcKT0RFV01CUUdBMVVFQ2d3TlIyOXNaVzBnUm1GamRHOXllVEVlTUJ3R0ExVUVBd3dWUjI5c1pXMGdSbUZqZEc5eQplU0JTVDA5VUlFTkJNQjRYRFRJeU1URXlNekV4TkRBMU0xb1hEVEkxTVRFeU1qRXhOREExTTFvd1FERVdNQlFHCkExVUVDZ3dOUjI5c1pXMGdSbUZqZEc5eWVURW1NQ1FHQTFVRUF3d2RSMjlzWlcwZ1JtRmpkRzl5ZVNCSlRsUkYKVWsxRlJFbEJWRVVnUTBFd1dUQVRCZ2NxaGtqT1BRSUJCZ2dxaGtqT1BRTUJCd05DQUFTU0Z2cFFkOVEwaEUzMwpWY2RXWHg1N0JOWWZ4TDgySWVjaEFoY09GWk1mdXhsVUloM3NjSXJ2VnU3SUtLLzVXWkVlTXczU2xVN3pRckhmCnhEUWhXN0ZabzJVd1l6QU9CZ05WSFE4QkFmOEVCQU1DQVFZd0VnWURWUjBUQVFIL0JBZ3dCZ0VCL3dJQkFUQTkKQmdOVkhSOEJBZjhFTXpBeE1DK2dMYUFyaGlsb2RIUndjem92TDJOaExtZHZiR1Z0TG01bGRIZHZjbXN2WTNKcwpMMGRQVEVWTkxVTkJMbU55YkRBS0JnZ3Foa2pPUFFRREFnTm9BREJsQWpBTXo2aXlIcXVkd1kwV3dmT0dTRVd1ClF0SisveDBFenRNekhWS0ljMXNGck5GaEtUbTFyTm96bFgxazVkR2FNWjBDTVFEckNjQ0JzOVhpVkNqUklqc0cKVXFTand5WEpwclNBUW40ZzNrRk5PTENIcnpPby81SVM5TVpVSDBsbmVrYmFhMW89Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN4akNDQW11Z0F3SUJBZ0lVYytIeUdCSE45TEdsRlduYkFSa1J3UHkwbTdNd0NnWUlLb1pJemowRUF3SXcKUURFV01CUUdBMVVFQ2d3TlIyOXNaVzBnUm1GamRHOXllVEVtTUNRR0ExVUVBd3dkUjI5c1pXMGdSbUZqZEc5eQplU0JKVGxSRlVrMUZSRWxCVkVVZ1EwRXdIaGNOTWpJeE1USTBNVE0xT0RRM1doY05Nakl4TWpJME1UTTFPRFEzCldqQk5NUXN3Q1FZRFZRUUdFd0pRVERFVE1CRUdBMVVFQ0F3S1UyOXRaUzFUZEdGMFpURVdNQlFHQTFVRUNnd04KUjI5c1pXMGdSbUZqZEc5eWVURVJNQThHQTFVRUF3d0lSWGhoYlhCc1pYTXdnZ0VpTUEwR0NTcUdTSWIzRFFFQgpBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRQ1owQVVzY1VoVjBpbzZUb254WE1ocWw5Tm9pNHFDdVpBSHN3S05uWDFtCmlOd3VuMStBQ2lJZTRwaENRMVQxejlDTzBQNTB3YjBRLzNadlJYNjMyWEZBbzNKZGpKUHQ0VDhkOU85MDBnY1IKMWcxK0Z3VFZYa1ZSQ0VaYzEwYUt3YVJMSk9sZ0hxY1ZSb05VcG5WTTZxZXpnd3dod2RYd3REVkRVU1J3a0ErcwpxL3VmaXpvUE5sQ0huclJsN2lJYllaMnBrTnY5TkF4Q1NzSFFzVlhHaTd0aSs1aTZCQ2ZBRUpSTmxkcERqL3ZYCitYQThVYjBUN2UwWThYTWUyTUhXenViTU9lVTVSdm01Rkd5b2VPUHBja203QWpXNWE3b2xsRGZuSWdTbFJ5LzMKTk1nWXBaR1NJWXc3MzhSUVJSWU56ZUhtVVowMFA0ZnZpdzk2d3NhakdKaFhBZ01CQUFHamF6QnBNQTRHQTFVZApEd0VCL3dRRUF3SUJCakFTQmdOVkhSTUJBZjhFQ0RBR0FRSC9BZ0VBTUVNR0ExVWRId0VCL3dRNU1EY3dOYUF6Cm9ER0dMMmgwZEhCek9pOHZZMkV1WjI5c1pXMHVibVYwZDI5eWF5OWpjbXd2UjA5TVJVMHRSVmhCVFZCTVJWTXUKWTNKc01Bb0dDQ3FHU000OUJBTUNBMGtBTUVZQ0lRRDAzZk5obkk0enhNVG5RWUk5VTVWZ1QzaUVYa3NmY1pSOQptUUV3ampDU1lnSWhBTzZPdmZ5NWNoZ2cwWTIxYXkrcHNSWk5BNmdZQUFETW1paWU5Wmt1NnNkQQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg
+      manifest_sig: J0T9SsGd+Gm+SB55D/5jI5So3tHTv5ZEl2vqFcayuBlmQIXtLDjsFWCCxTVrmYckC1sAMLvZvBcA8A7i/Qbr2BtyR3nsxCW3Jab4PxJOeIf4Eh3de7UYMitIoNcXh3UIul1ygG9VKE2efzSqVKfPZjEl/HPKluYkcPMCGK1BVgg5TSbWDI92LVMEgjakvoB0VxwLlfz+JeFja6xBD06l+vT7gQSah7MJn+eAX4QwRYsatj97GF4TTqnfrujIxVyyuImogZB4Hg39eRLdew4gPmdKyHrdEMkIr3+tX3ikb9l7MdCe0aD2xLGW5ZoqA5tVosItnoZT6yJ35zhTOJ7kOw==
+      manifest_sig_algorithm: sha256
+  app:
+    runtime: "vm"
+    params:
+      image_hash: "c024acb01780290579ad9f32573eee3979ea0c53e50b9766aa362bda"
+nodes:
+  cache:
+    payload: "cache"
+    init:
+      - [
+          "/bin/bash",
+          "-c",
+          "redis-server --bind 0.0.0.0 --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --loglevel debug > /dev/null &",
+        ]
+    http_proxy:
+      ports:
+        - "6379"
+    network: "default"
+    ip:
+      - "192.168.0.2"
+  api:
+    payload: "api"
+    init:
+      - [
+          "/bin/bash",
+          "-c",
+          "uvicorn weather.app:app --host 192.168.0.3 --port 5053 &",
+        ]
+    http_proxy:
+      ports:
+        - "5053"
+    network: "default"
+    ip:
+      - "192.168.0.3"
+  app:
+    payload: "app"
+    init:
+      - ["/docker-entrypoint.sh"]
+      - ["/bin/chmod", "a+x", "/"]
+      - ["/usr/sbin/nginx"]
+    http_proxy:
+      ports:
+        - "80"
+    network: "default"
+    ip:
+      - "192.168.0.4"
+networks:
+  default:
+    ip: "192.168.0.0/24"

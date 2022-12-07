@@ -1,0 +1,46 @@
+{
+    "base": "stations",
+    "clouds": {
+        "all": 95
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 57,
+        "lon": -2.15
+    },
+    "dt": 1666787102,
+    "id": 2641549,
+    "main": {
+        "feels_like": 14.42,
+        "grnd_level": 997,
+        "humidity": 90,
+        "pressure": 997,
+        "sea_level": 997,
+        "temp": 14.56,
+        "temp_max": 14.65,
+        "temp_min": 14.26
+    },
+    "name": "Newtonhill",
+    "sys": {
+        "country": "GB",
+        "id": 2031790,
+        "sunrise": 1666767909,
+        "sunset": 1666802385,
+        "type": 2
+    },
+    "timezone": 3600,
+    "visibility": 10000,
+    "weather": [
+        {
+            "description": "overcast clouds",
+            "icon": "04d",
+            "id": 804,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 188,
+        "gust": 18.1,
+        "speed": 10.25
+    }
+}
