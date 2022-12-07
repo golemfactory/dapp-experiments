@@ -14,7 +14,7 @@ services:
     image: redis:7.0-bullseye
     restart: always
     ports:
-      - '6379:6379'
+      - "6379:6379"
     command: redis-server --loglevel warning --requirepass redispw
   app:
     build:
@@ -22,4 +22,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
-
