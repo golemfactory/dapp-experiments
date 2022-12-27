@@ -77,15 +77,10 @@ To see the app in action, follow the link provided in `local_proxy_address` vari
 
 ## Running api with golem-manifest.json
 
-Encode [golem-manifest.json](golem-manifest.json) with base64. For example using python:
+Encode [golem-manifest.json](golem-manifest.json) with base64
 
-```python
-import base64
-
-with open("golem-manifest.json", mode="r") as f:
-    manifest = f.read().encode("utf-8")
-encoded_manifest = base64.b64encode(manifest).decode("ascii")
-print(encoded_manifest)
+```bash
+base64 golem-manifest.json --wrap=0
 ```
 
 Having encoded manifest open the [golem-compose.yml](golem-compose.yml) file and update the `manifest` definition with the encoded manifest
