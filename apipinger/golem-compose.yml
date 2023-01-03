@@ -23,7 +23,7 @@ nodes:
       - [
           "/bin/bash",
           "-c",
-          "uvicorn pinger.app:app --host 192.168.0.3 --port 5066 &",
+          "uvicorn pinger.app:app --host 192.168.0.2 --port 5066 &",
         ]
     http_proxy:
       ports:
