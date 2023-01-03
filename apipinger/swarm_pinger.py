@@ -1,14 +1,17 @@
 import asyncio
 import json
+
 import aiohttp
 
 PINGER_URL = "http://localhost:8080/api/v1"
+
 
 async def run_pinger(session, idx):
     print(f"pinger-{idx}:hi")
     async with session.get(PINGER_URL) as response:
         status_code = response.status
     print(f"pinger-{idx}:bye")
+
 
 async def get_measurements(session):
     async with session.get(f"{PINGER_URL}/measurements") as response:

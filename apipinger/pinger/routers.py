@@ -16,10 +16,10 @@ async def get_random():
     try:
         ping = await pinger.ping()
     except Exception as err:
-        ping = {"err":f"{type(err)}: {err}"}
+        ping = {"err": f"{type(err)}: {err}"}
     finally:
         end_at = time.time()
-        ping["ping_time"]= end_at - start_at
+        ping["ping_time"] = end_at - start_at
     ping["ping_id"] = uuid4()
     MEASUREMENTS.append(ping)
     return jsonable_encoder(ping)
