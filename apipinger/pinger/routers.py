@@ -1,3 +1,4 @@
+import time
 from uuid import uuid4
 
 from fastapi import APIRouter
@@ -11,7 +12,14 @@ router_v1: APIRouter = APIRouter()
 
 @router_v1.get("")
 async def get_random():
-    ping = await pinger.ping()
+    start_at = time.time()
+    try:
+        ping = await pinger.ping()
+    except Exception as err:
+        ping = {"err":f"{type(err)}: {err}"}
+    finally:
+        end_at = time.time()
+        ping["ping_time"]= end_at - start_at
     ping["ping_id"] = uuid4()
     MEASUREMENTS.append(ping)
     return jsonable_encoder(ping)

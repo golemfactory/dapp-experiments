@@ -14,9 +14,9 @@
                 "os": "linux"
             },
             "urls": [
-                "http://yacn2.dev.golem.network:8000/docker-apipinger-pinger-latest-e4632310dc.gvmi"
+                "http://yacn2.dev.golem.network:8000/docker-apipinger-pinger-latest-f40198c8e7.gvmi"
             ],
-            "hash": "sha3:90f786bb24efbe4c81d810842562ea30c213c8dba4cb8e0f2b315973"
+            "hash": "sha3:1ea66ec406209dcd9cf36aceca82e5737598f88e5770e0a93f47a78f"
         }
     ],
     "compManifest": {
