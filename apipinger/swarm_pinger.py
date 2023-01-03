@@ -20,9 +20,9 @@ async def get_measurements(session):
 async def main(*args, **kwargs):
     async with aiohttp.ClientSession() as session:
         tasks = []
-        for idx in range(100):
+        for idx in range(1000):
             tasks.append(asyncio.create_task(run_pinger(session, idx)))
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
         for task in tasks:
             await task
         measurements = await get_measurements(session)
