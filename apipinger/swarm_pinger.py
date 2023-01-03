@@ -1,5 +1,6 @@
 import asyncio
 import json
+import time
 
 import aiohttp
 
@@ -20,6 +21,7 @@ async def get_measurements(session):
 
 async def main(*args, **kwargs):
     print("main:hi")
+    start_at = time.time()
     async with aiohttp.ClientSession() as session:
         print("main:tasks")
         tasks = [asyncio.create_task(run_pinger(session, idx)) for idx in range(100)]
@@ -30,7 +32,8 @@ async def main(*args, **kwargs):
         measurements = await get_measurements(session)
     print("main:json")
     print(json.dumps(measurements, indent=2))
-    print("main:bye")
+    end_at = time.time()
+    print(f"main:bye:{end_at-start_at}")
 
 
 if __name__ == "__main__":
