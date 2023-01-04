@@ -24,12 +24,16 @@ No delay between requests:
 - 1000 requests in 2117s: 346/654
 - 1000 requests in ~2100s: 343/657
 
-Total "availability": 755/2200 - **34.3181818%**
+Responses resulted with 200: 755/2200 - **34.3181818%**
+
+Response under 2s: **27.6818182%**
 
 ## Take 2 04-01-2023 `golem2004.h` provider
 
 1s delay between requests:
 
-- 1000 requests in ~1121s 345/655
+- 1000 requests in ~1121s 345/655;
+  49 requests resulted in 200 response after 60s;
+  15 requests resulted in 200 response after more than 2s and less than 60s
 
-"availability": 755/2200 - **34.5**
+Response under 2s: 281/655/49/15 - **28.1**
