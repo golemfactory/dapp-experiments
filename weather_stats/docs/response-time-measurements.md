@@ -31,7 +31,7 @@ Every first request after starting dApp was longer by average of **4s** than fol
 
 ### Outbound
 
-When testing Weather Stats app with outbound feature it yields timeouts in at least **~20%** of all samples. There also were instances of requests finishing successfully but after time between 5 and 60 seconds. Requests which exceeded 60s resulted in timeouts.
+When testing Weather Stats app with outbound feature it often yielded timeouts. There also were instances of requests finishing successfully but after time between 5 and 60 seconds. Requests which exceeded 60s resulted in timeouts.
 
 ![with-outbound](https://user-images.githubusercontent.com/11493087/210322749-8276d541-0ce0-4fd9-9124-c4ee1e79c887.png)
 
@@ -57,4 +57,4 @@ Values are depended on randomly acquired providers
 - First request after deply always has **~4s** of additional overhead
 - Common overhead of **~0.5s-1s** was observed
 - Used network offer stable performance when **outbound** was not used.
-- Outbound resulted in the same overhead but performance was not stable less than **~80%** of requests finished in stable time frame. (unknown reason of timeouts due to used method)
+- Outbound resulted in the same overhead but performance was not stable as requests often were finishing with a 60s timeout. (unknown reason of timeouts due to used method)
