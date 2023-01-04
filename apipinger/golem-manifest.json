@@ -1,0 +1,47 @@
+{
+    "version": "0.1.0",
+    "createdAt": "2023-01-03T13:24:19.241064Z",
+    "expiresAt": "2100-01-01T00:01:00.000000Z",
+    "metadata": {
+        "name": "API Pinger App",
+        "description": "Application to ping some random APIs, powered by Golem Network",
+        "version": "0.1.0"
+    },
+    "payload": [
+        {
+            "platform": {
+                "arch": "x86_64",
+                "os": "linux"
+            },
+            "urls": [
+                "http://yacn2.dev.golem.network:8000/docker-apipinger-pinger-latest-f40198c8e7.gvmi"
+            ],
+            "hash": "sha3:1ea66ec406209dcd9cf36aceca82e5737598f88e5770e0a93f47a78f"
+        }
+    ],
+    "compManifest": {
+        "version": "0.1.0",
+        "script": {
+            "commands": [
+                "run .*uvicorn.*"
+            ],
+            "match": "regex"
+        },
+        "net": {
+            "inet": {
+                "out": {
+                    "protocols": [
+                        "https",
+                        "http"
+                    ],
+                    "urls": [
+                        "https://api.jikan.moe",
+                        "https://api.genderize.io",
+                        "https://api.agify.io",
+                        "https://api.zippopotam.us"
+                    ]
+                }
+            }
+        }
+    }
+}

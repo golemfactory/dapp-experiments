@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  pinger:
+    build: .
+    command: uvicorn pinger.app:app --host 0.0.0.0 --port 5066 --reload
+    env_file: .env
+    volumes:
+      - ./pinger:/pinger
+    ports:
+      - "5066:5066"
