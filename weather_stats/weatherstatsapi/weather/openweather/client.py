@@ -24,13 +24,15 @@ class OpenWeatherClient:
         tb: Optional[TracebackType],
     ) -> None:
         await self.__session.close()
-    
+
     @property
     def _session(self) -> ClientSession:
         try:
             return self.__session
         except AttributeError as err:
-            raise OpenWeatherError("Open Weather Client was not initialized correctly") from err
+            raise OpenWeatherError(
+                "Open Weather Client was not initialized correctly"
+            ) from err
 
     async def head_status(self) -> int:
         async with self._session.get(

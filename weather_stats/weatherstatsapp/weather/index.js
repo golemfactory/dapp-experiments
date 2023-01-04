@@ -26,11 +26,15 @@ function setResultList(parsedResult) {
             }
             event.target.classList.add('active');
             const clickedData = JSON.parse(event.target.innerHTML);
-            fetch('/api/v1/weather?lat='+clickedData.lat+'&long='+clickedData.lon)
-            .then(result => result.json())
-            .then(parsedResult => {
-                document.getElementById('weather').innerHTML = JSON.stringify(parsedResult, undefined, 2);
-            });
+            var start = performance.now();
+            fetch('/api/v1/weather?lat=' + clickedData.lat + '&long=' + clickedData.lon)
+                .then(result => {
+                    console.log(`Getting weather took ${performance.now() - start} milliseconds.`);
+                    return result.json()
+                })
+                .then(
+                    parsedResult => document.getElementById('weather').innerHTML = JSON.stringify(parsedResult, undefined, 2)
+                );
         })
         resultList.appendChild(li);
     }
