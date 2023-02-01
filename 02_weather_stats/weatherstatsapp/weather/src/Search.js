@@ -32,10 +32,10 @@ const Search = () => {
                 </h1>
             </div>
             <div className="mt-10 border-t border-b md:mx-24 py-6">
-                <div className="flex justify-center mx-16 text-gray-400">
+                <div className="flex justify-center mx-16 text-gray-500">
                     <p>
-                        This apps purpose is This apps purpose is This apps purpose is This apps purpose is This apps purpose is This apps
-                        purpose is{" "}
+                        This simple weather app is an example of <strong>outbound networking</strong> in a Golem application. It uses the
+                        OpenStreetMap API to search for locations and the OpenWeatherMap API to get weather data.
                     </p>
                 </div>
             </div>
