@@ -7,9 +7,11 @@ const Search = () => {
     const [selectedCity, setSelectedCity] = useState(null)
     const [loading, setLoading] = useState(false)
     const [weatherLoading, setWeatherLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     const handleSearch = async (e) => {
         e.preventDefault()
+        setError(false)
         setLoading(true)
         await new Promise((resolve) => setTimeout(resolve, 800))
 
@@ -24,12 +26,20 @@ const Search = () => {
     const handleResultClick = async (clickedData) => {
         setWeatherLoading(true)
         setWeather(true)
+        setError(false)
         await new Promise((resolve) => setTimeout(resolve, 600))
         fetch(`/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`)
             .then((result) => result.json())
             .then((parsedResult) => {
                 setWeather(parsedResult)
                 setWeatherLoading(false)
+            })
+            .catch((error) => {
+                console.error(error)
+                setWeather(false)
+                setWeatherLoading(false)
+                setResultList([])
+                setError(true)
             })
     }
 
@@ -90,6 +100,11 @@ const Search = () => {
             </div>
 
             <div className="mt-14">
+                {error && (
+                    <div className="flex justify-center">
+                        <p className="text-gray-500 text-7xl text-center">Something went wrong. Please try again.</p>
+                    </div>
+                )}
                 <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 -mx-4">
                     {resultList.map((result, index) => (
                         <React.Fragment key={index}>
