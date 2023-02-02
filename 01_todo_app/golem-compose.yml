@@ -15,7 +15,7 @@ payloads:
   web:
     runtime: "vm"
     params:
-      image_hash: "eb67411fe5e48ee56c6172ebe4cf2a0aa7c80a62dae781fe0d524649"
+      image_hash: "ed1bb90dba60a7f6f5b8c16a94cc9bc588bd9bfade93b5ace435ab47"
 nodes:
   db:
     payload: "db"
