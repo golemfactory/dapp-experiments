@@ -3,9 +3,10 @@ import React, { useState } from "react"
 const Search = () => {
     const [searchInput, setSearchInput] = useState("")
     const [resultList, setResultList] = useState([])
-    const [weather, setWeather] = useState()
-    const [selectedCity, setSelectedCity] = useState("")
+    const [weather, setWeather] = useState(null)
+    const [selectedCity, setSelectedCity] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [weatherLoading, setWeatherLoading] = useState(false)
 
     const handleSearch = async (e) => {
         e.preventDefault()
@@ -21,14 +22,15 @@ const Search = () => {
     }
 
     const handleResultClick = async (clickedData) => {
-        setLoading(true)
+        setWeatherLoading(true)
+        setWeather(true)
         await new Promise((resolve) => setTimeout(resolve, 600))
         fetch(`/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`)
             .then((result) => result.json())
             .then((parsedResult) => {
                 setWeather(parsedResult)
+                setWeatherLoading(false)
             })
-        setLoading(false)
     }
 
     return (
@@ -67,7 +69,7 @@ const Search = () => {
                         >
                             {loading ? (
                                 <svg
-                                    className="w-7 h-7 mx-4 ml inline-block text-white animate-spin"
+                                    className="w-7 h-7 mx-4 mt-2 ml inline-block text-white animate-spin"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -134,7 +136,30 @@ const Search = () => {
                         <div className="p-10 md:w-2/3 bg-white rounded-full shadow-lg border">
                             <div className="grid justify-items-center">
                                 <p className="-mb-1 grid justify-items-start text-left font-light text-gray-500">Temp</p>
-                                <p className="text-6xl font-light text-gray-600">{weather}℃</p>
+                                {weatherLoading ? (
+                                    <svg
+                                        className="w-10 h-10 mx-4 ml inline-block text-black animate-spin"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
+                                ) : (
+                                    <p className="text-6xl font-light text-gray-600">{weather.temperature}℃</p>
+                                )}
                             </div>
                         </div>
                     </div>
