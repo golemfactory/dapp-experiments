@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     ports:
-      - 5000:5000
+      - 5030:5000
 
   web:
     build: web
@@ -30,4 +30,4 @@ services:
     depends_on:
       - api
     ports:
-      - 3000:80
+      - 3030:80
