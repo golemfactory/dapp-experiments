@@ -4,21 +4,38 @@ services:
     build:
       context: ./weatherstatsapi
       dockerfile: Dockerfile
-    command: uvicorn weather.app:app --host 0.0.0.0 --port 5052
+    command: uvicorn weather.app:app --host 0.0.0.0 --port 5053
     env_file: .env
     ports:
-      - "5052:5052"
+      - "5053:5053"
     depends_on:
       - cache
+    networks:
+      hfnet:
+        ipv4_address: 192.168.0.3
   cache:
     image: redis:7.0-bullseye
+    networks:
+      - hfnet
     restart: always
     ports:
       - "6379:6379"
     command: redis-server --loglevel warning --requirepass redispw
   app:
+    networks:
+      - hfnet
     build:
       context: ./weatherstatsapp
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+
+
+networks:
+  hfnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.188
