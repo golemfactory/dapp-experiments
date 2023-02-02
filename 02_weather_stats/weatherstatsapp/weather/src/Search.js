@@ -69,7 +69,7 @@ const Search = () => {
                         >
                             {loading ? (
                                 <svg
-                                    className="w-7 h-7 mx-4 mt-2 ml inline-block text-white animate-spin"
+                                    className="w-7 h-7 mx-4 ml inline-block text-white animate-spin"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -138,7 +138,7 @@ const Search = () => {
                                 <p className="-mb-1 grid justify-items-start text-left font-light text-gray-500">Temp</p>
                                 {weatherLoading ? (
                                     <svg
-                                        className="w-10 h-10 mx-4 ml inline-block text-black animate-spin"
+                                        className="w-10 h-10 mx-4 mt-1 ml inline-block text-black animate-spin"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
