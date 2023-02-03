@@ -1,8 +1,10 @@
 yagna:
-  app_key: "$YAGNA_APPKEY"
-  subnet_tag: "public"
+  app_key: "7fea6f84b3184a2b93f5cacdb585b558"
+  subnet_tag: "0987"
+  api_url: "http://127.0.0.1:17465"
+  gsb_url: "unix:///tmp/Devnet1.sock"
 
 payment:
-  budget: 1.0
+  budget: 10.0
   driver: "erc20"
   network: "rinkeby"
