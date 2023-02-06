@@ -23,7 +23,7 @@ payloads:
   app:
     runtime: "vm"
     params:
-      image_hash: "c7bea3e15f025e5a0250875158f9d9fd17a6329a9fe448de99709984"
+      image_hash: "29fd0ccf96f681e4dc8685b2f03aa68ef868f30698d6fe12a089eee9"
 nodes:
   cache:
     payload: "cache"
