@@ -1,0 +1,19 @@
+meta:
+  name: "GLM Query"
+  author: "Golem Factory"
+  description: "A minimal app querying the GLM smart contract for the current balance."
+  version: "0.1.0"
+payloads:
+  server:
+    runtime: "vm/manifest"
+    params:
+      manifest: ewogICAgInZlcnNpb24iOiAiMC4xLjAiLAogICAgImNyZWF0ZWRBdCI6ICIyMDIyLTEyLTAxVDAwOjAwOjAwLjAwMDAwMFoiLAogICAgImV4cGlyZXNBdCI6ICIyMTAwLTAxLTAxVDAwOjAwOjAwLjAwMDAwMFoiLAogICAgInBheWxvYWQiOiBbCiAgICAgICAgewogICAgICAgICAgInBsYXRmb3JtIjogewogICAgICAgICAgICAiYXJjaCI6ICJ4ODZfNjQiLAogICAgICAgICAgICAib3MiOiAibGludXgiCiAgICAgICAgICB9LAogICAgICAgICAgInVybHMiOiBbCiAgICAgICAgICAgICJodHRwOi8vZ2lyZXBvLmRldi5nb2xlbS5uZXR3b3JrOjgwMDAvZG9ja2VyLWdsbV9xdWVyeS1sYXRlc3QtYTg3YTkxNzBjNi5ndm1pIgogICAgICAgICAgXSwKICAgICAgICAgICJoYXNoIjogInNoYTM6YzA3OWE4OTdlODFkYWYzMDMyNDk5ZDUxMmRiZmE1YzExMzc3ZGM2M2NjNjVjZDNjNWY0MTkyZjAiCiAgICAgICAgfQogICAgICBdLAogICAgICAiY29tcE1hbmlmZXN0IjogewogICAgICAidmVyc2lvbiI6ICIwLjEuMCIsCiAgICAgICJzY3JpcHQiOiB7CiAgICAgICAgImNvbW1hbmRzIjogWwogICAgICAgICAgInJ1biAuKiIKICAgICAgICBdLAogICAgICAgICJtYXRjaCI6ICJyZWdleCIKICAgICAgfSwKICAgICAgIm5ldCI6IHsKICAgICAgICAiaW5ldCI6IHsKICAgICAgICAgICJvdXQiOiB7CiAgICAgICAgICAgICJwcm90b2NvbHMiOiBbCiAgICAgICAgICAgICAgImh0dHAiCiAgICAgICAgICAgIF0sCiAgICAgICAgICAgICJ1cmxzIjogWwogICAgICAgICAgICAgICAgImh0dHA6Ly9ib3IuZ29sZW0ubmV0d29yayIsCiAgICAgICAgICAgICAgICAiaHR0cHM6Ly9nZXRoLmdvbGVtLm5ldHdvcms6NTU1NTUiLAogICAgICAgICAgICAgICAgImh0dHBzOi8vYm9yLmdvbGVtLm5ldHdvcmsiLAogICAgICAgICAgICAgICAgImh0dHA6Ly9nZXRoLnRlc3RuZXQuZ29sZW0ubmV0d29yazo1NTU1NSIKICAgICAgICAgICAgXQogICAgICAgICAgfQogICAgICAgIH0KICAgICAgfQogICAgfQogIH0=
+nodes:
+  server:
+    payload: "server"
+    init:
+      - run:
+          args: ["/bin/sh", "-c", "poetry run glm_query run > out 2> err &"]
+    http_proxy:
+      ports:
+        - "5000"

@@ -1,0 +1,41 @@
+{
+    "version": "0.1.0",
+    "createdAt": "2022-12-01T00:00:00.000000Z",
+    "expiresAt": "2100-01-01T00:00:00.000000Z",
+    "payload": [
+        {
+          "platform": {
+            "arch": "x86_64",
+            "os": "linux"
+          },
+          "urls": [
+            "http://girepo.dev.golem.network:8000/docker-glm_query-latest-a87a9170c6.gvmi"
+          ],
+          "hash": "sha3:c079a897e81daf3032499d512dbfa5c11377dc63cc65cd3c5f4192f0"
+        }
+      ],
+      "compManifest": {
+      "version": "0.1.0",
+      "script": {
+        "commands": [
+          "run .*"
+        ],
+        "match": "regex"
+      },
+      "net": {
+        "inet": {
+          "out": {
+            "protocols": [
+              "http"
+            ],
+            "urls": [
+                "http://bor.golem.network",
+                "https://geth.golem.network:55555",
+                "https://bor.golem.network",
+                "http://geth.testnet.golem.network:55555"
+            ]
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address scanner</title>
+</head>
+<body>
+    {% if address and balance %}
+        <p>
+            GLM Balance of <b>{{address}}</b> on <b>{{eth_network}}</b>
+        </p>
+        <p>
+            <b>{{ "%0.7f" % balance }}</b> GLM
+        </p>
+        <p>
+            <a href="?">Back</a>
+        </p>
+    {%- else %}
+    <form method="get">
+        <p>
+            Query GLM balance on <b>{{eth_network}}</b>
+        </p>
+        <p>
+            <input type="text" name="address" placeholder="ethereum address">
+        </p>
+        <p>
+            <input type="submit" value="send">
+        </p>
+    </form>
+    {%- endif %}
+</body>
+</html>
