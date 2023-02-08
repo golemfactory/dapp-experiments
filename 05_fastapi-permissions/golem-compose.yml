@@ -1,0 +1,28 @@
+meta:
+  name: "FastAPI permissions"
+  description: "Application to test FastAPI permisions"
+  author: "GolemFactory"
+  version: "0.1.0"
+payloads:
+  api:
+    runtime: "vm"
+    params:
+      image_hash: "dd6ec4ac036926dbd842aa477bb31ca8db8683afe5c2de05d198e966"
+nodes:
+  api:
+    payload: "api"
+    init:
+      - [
+          "/bin/bash",
+          "-c",
+          "uvicorn src.app:app --host 192.168.0.2 --port 6777 &",
+        ]
+    http_proxy:
+      ports:
+        - "6777"
+    network: "default"
+    ip:
+      - "192.168.0.2"
+networks:
+  default:
+    ip: "192.168.0.0/24"
