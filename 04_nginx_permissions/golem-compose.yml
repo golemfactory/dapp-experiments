@@ -1,0 +1,25 @@
+meta:
+  name: "Nginx permissions"
+  description: "Application to test Nginx permisions"
+  author: "GolemFactory"
+  version: "0.1.0"
+payloads:
+  nginx:
+    runtime: "vm"
+    params:
+      image_hash: "7e8eef69edf00903b85528b7bafcff0e8c7b1a261ccfe93b1b34e8a0"
+nodes:
+  nginx:
+    payload: "nginx"
+    init:
+      - ["/bin/chmod", "a+x", "/"]
+      - ["/usr/sbin/nginx"]
+    http_proxy:
+      ports:
+        - "80"
+    network: "default"
+    ip:
+      - "192.168.0.2"
+networks:
+  default:
+    ip: "192.168.0.0/24"
