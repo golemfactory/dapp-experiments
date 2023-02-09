@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "05-hello-world"
+version = "0.1.0"
+description = ""
+authors = ["shadeofblue <blue@golem.network>"]
+readme = "README.md"
+packages = [{include = "05_hello_world"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
