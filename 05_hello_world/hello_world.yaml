@@ -1,0 +1,16 @@
+payloads:
+  hello:
+    runtime: "vm"
+    params:
+      image_hash: "3032b6e97914eb5ee87d71188180d271f04eb9472b6da0d308943b2f"
+nodes:
+  hello:
+    payload: "hello"
+    init:
+      - run:
+          args: ["/bin/sh", "-c", "poetry run python hello_world.py > /dev/null &"]
+      - run:
+          args: ["/bin/sh", "-c", "sleep 1"]
+    http_proxy:
+      ports:
+        - "5000"
