@@ -19,7 +19,7 @@ run customized version, please follow the [development guide](#development)
 
 To install the yagna daemon, run the following command:
 ```
-$ curl -ksSf https://join.golem.network/as-requestor | YA_INSTALLER_CORE=v0.11.0 bash -
+$ curl -ksSf https://join.golem.network/as-requestor | bash -
 ```
 
 **Application doesn't work on daemon versions lower than v0.11.0**, so please make sure to run this command if you think
@@ -27,10 +27,8 @@ your daemon might be outdated (it's safe to run it multiple times, will abort if
 
 To run the daemon itself, run the following command:
 ```
-$ YA_NET_RELAY_HOST=yacn2a.dev.golem.network:7477 yagna service run
+$ yagna service run
 ```
-
-The environment variable, `YA_NET_RELAY_HOST`, is required for Hybrid network to be used (which is required for this app)
 
 ### Configure yagna daemon
 
