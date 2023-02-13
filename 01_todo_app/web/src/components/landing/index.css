@@ -6,7 +6,7 @@
 
 body,
 html {
-    @apply bg-primary;
-    font-family: "Inter", sans-serif;
-    font-family: "Roboto Mono", monospace;
+  @apply bg-primary;
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
