@@ -4,6 +4,7 @@ services:
   db:
     build: db
     image: todo-app-db:latest
+    platform: linux/amd64
     command:
       - /bin/run_rqlite.sh
     ports:
@@ -12,19 +13,21 @@ services:
   api:
     build: api
     image: todo-app-api:latest
+    platform: linux/amd64
     command:
       - /webapp/run_api.sh
     depends_on:
       - db
     ports:
-      - 5000:5000
+      - 5030:5000
 
   web:
     build: web
     image: todo-app-web:latest
+    platform: linux/amd64
     command:
       - /bin/run_web.sh
     depends_on:
       - api
     ports:
-      - 3000:80
+      - 3030:80

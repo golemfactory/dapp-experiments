@@ -1,35 +1,12 @@
-body {
-  background-image: url("https://assets-global.website-files.com/62446d07873fde065cbcb8d5/62446d07873fdec77fbcb92d_Header-background-circles-blue-theme-optimized-2.png");
-  background-color: #13188d;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.mui-container {
-    padding: 50px;
-}
-.mui-panel {
-    border-radius: 20px;
-}
-.form-wrapper {
-    margin-bottom: 30px;
-}
-.todo-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.todo-item {
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
-    align-items: baseline;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.todo-item-done {
-    text-decoration: line-through;
-    color: rgba(0, 0, 0, 0.5)
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap");
 
-.todo-item + .todo-item {
-    margin-top: 20px;
+body,
+html {
+  @apply bg-primary;
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
