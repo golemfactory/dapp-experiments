@@ -9,7 +9,6 @@ import TaskListItem from "./TaskListItem";
 const Index = () => {
   const tasks = useSelector((state) => state.app.tasks);
   const dispatch = useDispatch();
-  console.log(tasks);
   useEffect(() => {
     dispatch(getTasks());
   }, []);
