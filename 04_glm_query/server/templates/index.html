@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address scanner</title>
+</head>
+<body>
+    {% if address and balance != "" %}
+        <p>
+            GLM Balance of <b>{{address}}</b> on <b>{{eth_network}}</b>
+        </p>
+        <p>
+            <b>{{ "%0.7f" % balance }}</b> GLM
+        </p>
+        <p>
+            <a href="?network={{eth_network}}">Back</a>
+        </p>
+    {% else %}
+        {% if error %}
+        <p>
+            {{ error }}
+        </p>
+        <p>
+            <a href="?network={{eth_network}}">Back</a>
+        </p>
+        {% else %}
+    <form method="get">
+        <p>
+            Query GLM balance</b>
+        </p>
+        <p>
+            <select name="network">
+                {% for network in networks %}
+                    <option value="{{network}}" {% if network == eth_network %} selected {% endif %}>{{network}}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="address" placeholder="ethereum address">
+        </p>
+        <p>
+            <input type="submit" value="Check Balance">
+        </p>
+    </form>
+        {% endif %}
+    {%- endif %}
+</body>
+</html>
