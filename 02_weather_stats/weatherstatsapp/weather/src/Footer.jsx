@@ -1,3 +1,5 @@
+import { FooterList } from "./FooterList"
+
 const navigation = {
     first: [
         { name: "Platform", href: "https://www.golem.network/platform" },
@@ -94,39 +96,15 @@ const Footer = () => {
                     <div className="grid gap-y-8 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 col-span-12">
                         <div>
                             <h3 className="text-sm font-semibold leading-6 text-gray-500">Developers</h3>
-                            <ul role="list" className="mt-6 space-y-4">
-                                {navigation.first.map((item) => (
-                                    <li key={item.name}>
-                                        <a href={item.href} target="_blank" className="text-sm leading-6 text-gray-400 hover:text-gray-600">
-                                            {item.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                            <FooterList links={navigation.first} />
                         </div>
                         <div className="">
                             <h3 className="text-sm font-semibold leading-6 text-gray-500">Community</h3>
-                            <ul role="list" className="mt-6 space-y-4 col-span-4">
-                                {navigation.second.map((item) => (
-                                    <li key={item.name}>
-                                        <a href={item.href} target="_blank" className="text-sm leading-6 text-gray-400 hover:text-gray-600">
-                                            {item.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                            <FooterList links={navigation.second} classes="col-span-4" />
                         </div>
                         <div className="mt-10 md:mt-0">
                             <h3 className="text-sm font-semibold leading-6 text-gray-500">Resources</h3>
-                            <ul role="list" className="mt-6 space-y-4 col-span-4">
-                                {navigation.third.map((item) => (
-                                    <li key={item.name}>
-                                        <a href={item.href} target="_blank" className="text-sm leading-6 text-gray-400 hover:text-gray-600">
-                                            {item.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                            <FooterList links={navigation.third} classes="col-span-4" />
                         </div>
                     </div>
                 </div>

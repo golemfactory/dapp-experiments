@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import Temperature from "./Temperature"
+import { Temperature } from "./Temperature"
 import SearchForm from "./SearchForm"
 import ResultListItemBoundary from "./ResultListItemBoundary"
 import ResultListItemPlace from "./ResultListItemPlace"
+import { ErrorInfo } from "./ErrorInfo"
 
 const Search = () => {
     const [searchInput, setSearchInput] = useState("")
@@ -18,19 +19,18 @@ const Search = () => {
         setWeather(true)
         setError(false)
         await new Promise((resolve) => setTimeout(resolve, 600))
-        fetch(`/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`)
-            .then((result) => result.json())
-            .then((parsedResult) => {
-                setWeather(parsedResult)
-                setWeatherLoading(false)
-            })
-            .catch((error) => {
-                console.error(error)
-                setWeather(false)
-                setWeatherLoading(false)
-                setResultList([])
-                setError(true)
-            })
+        try {
+            const response = await fetch(`/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`)
+            const parsedResult = await response.json()
+            setWeather(parsedResult)
+            setWeatherLoading(false)
+        } catch (error) {
+            console.error(error)
+            setWeather(false)
+            setWeatherLoading(false)
+            setResultList([])
+            setError(true)
+        }
     }
 
     return (
@@ -61,11 +61,7 @@ const Search = () => {
             </div>
 
             <div className="mt-14">
-                {error && (
-                    <div className="flex justify-center">
-                        <p className="text-gray-500 text-7xl text-center">Something went wrong. Please try again.</p>
-                    </div>
-                )}
+                {error && <ErrorInfo />}
                 <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 -mx-4">
                     {resultList.map((result, index) => (
                         <React.Fragment key={index}>
