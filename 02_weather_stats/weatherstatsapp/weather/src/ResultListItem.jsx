@@ -1,13 +1,13 @@
-const ResultListItemBoundary = ({
+const ResultListItem = ({
   result,
   index,
   handleResultClick,
   selectedCity,
   setSelectedCity,
-  displayobj,
+  value,
 }) => {
   return (
-    <li key={index} className="px-4 mb-4">
+    <li className="px-4 mb-4">
       <p
         className={` hover:bg-blue-600 ${
           index == selectedCity
@@ -19,10 +19,10 @@ const ResultListItemBoundary = ({
           setSelectedCity(index);
         }}
       >
-        {displayobj} {result.address.country}
+        {value}
       </p>
     </li>
   );
 };
 
-export default ResultListItemBoundary;
+export default ResultListItem;

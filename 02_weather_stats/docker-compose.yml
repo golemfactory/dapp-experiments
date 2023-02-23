@@ -5,7 +5,7 @@ services:
       context: ./weatherstatsapi
       dockerfile: Dockerfile
     command: uvicorn weather.app:app --host 0.0.0.0 --port 5053
-    env_file: .env
+    env_file: weatherstatsapi/.api-env
     platform: linux/amd64
     ports:
       - "5053:5053"

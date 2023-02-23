@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Temperature } from "./Temperature";
 import SearchForm from "./SearchForm";
-import ResultListItemBoundary from "./ResultListItemBoundary";
-import ResultListItemPlace from "./ResultListItemPlace";
+import ResultListItem from "./ResultListItem";
 import { ErrorInfo } from "./ErrorInfo";
 
 const Search = () => {
@@ -72,9 +71,11 @@ const Search = () => {
               {result.class === "place" &&
                 result.address &&
                 result.address.city && (
-                  <ResultListItemPlace
+                  <ResultListItem
                     result={result}
+                    key={index}
                     index={index}
+                    value={result.address.city}
                     handleResultClick={handleResultClick}
                     selectedCity={selectedCity}
                     setSelectedCity={setSelectedCity}
@@ -87,10 +88,11 @@ const Search = () => {
                     obj.toLowerCase().includes(searchInput.toLowerCase())
                   )
                   .map((displayobj, index) => (
-                    <ResultListItemBoundary
+                    <ResultListItem
                       result={result}
+                      key={index}
                       index={index}
-                      displayobj={displayobj}
+                      value={`${displayobj}, ${result.address.country}`}
                       handleResultClick={handleResultClick}
                       selectedCity={selectedCity}
                       setSelectedCity={setSelectedCity}

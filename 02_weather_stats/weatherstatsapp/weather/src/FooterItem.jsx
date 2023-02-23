@@ -1,6 +1,6 @@
 export const FooterItem = ({ item }) => {
   return (
-    <li key={item.name}>
+    <li>
       <a
         href={item.href}
         target="_blank"
