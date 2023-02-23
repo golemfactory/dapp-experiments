@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {Temperature} from "./Temperature";
+import React, { useState } from "react";
+import { Temperature } from "./Temperature";
 import SearchForm from "./SearchForm";
 import ResultListItem from "./ResultListItem";
-import {ErrorInfo} from "./ErrorInfo";
-import {fetchPlaces, prepareForDisplay} from "./utils/OpenStreetMap";
+import { ErrorInfo } from "./ErrorInfo";
+import { fetchPlaces, prepareForDisplay } from "./utils/OpenStreetMap";
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -58,7 +58,7 @@ const Search = () => {
   return (
     <div className="w-full">
       <div className="flex items-center justify-center gap-4">
-        <img src="weather.png" alt="logo" className="w-16 h-16 rounded-full"/>
+        <img src="weather.png" alt="logo" className="w-16 h-16 rounded-full" />
         <h1 className="font-bold text-2xl text-blue-600">
           weather <span className="font-thin">app</span>
         </h1>
@@ -83,7 +83,7 @@ const Search = () => {
       </div>
 
       <div className="mt-14">
-        {error && <ErrorInfo/>}
+        {error && <ErrorInfo />}
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 -mx-4">
           {prepareForDisplay(resultList, lastSearch).map((result, index) => (
             <ResultListItem
@@ -98,7 +98,7 @@ const Search = () => {
           ))}
         </ul>
         {weather && (
-          <Temperature weather={weather} weatherLoading={weatherLoading}/>
+          <Temperature weather={weather} weatherLoading={weatherLoading} />
         )}
       </div>
     </div>

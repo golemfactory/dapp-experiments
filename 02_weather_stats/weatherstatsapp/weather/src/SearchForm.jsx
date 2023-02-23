@@ -1,11 +1,6 @@
 import { LoadingIcon } from "./Icons";
 
-const SearchForm = ({
-  searchInput,
-  setSearchInput,
-  loading,
-  onSubmit
-}) => {
+const SearchForm = ({ searchInput, setSearchInput, loading, onSubmit }) => {
   return (
     <form
       onSubmit={onSubmit}
