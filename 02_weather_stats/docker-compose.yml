@@ -12,16 +12,16 @@ services:
     depends_on:
       - cache
     networks:
-      hfnet:
+      weather_stats_net:
         ipv4_address: 192.168.0.3
   cache:
     image: redis:7.0-bullseye
     networks:
-      hfnet:
+      weather_stats_net:
         ipv4_address: 192.168.0.2
     platform: linux/amd64
     networks:
-      - hfnet
+      - weather_stats_net
     restart: always
     ports:
       - "6379:6379"
@@ -29,7 +29,7 @@ services:
   app:
     platform: linux/amd64
     networks:
-      - hfnet
+      - weather_stats_net
     build:
       context: ./weatherstatsapp
       dockerfile: Dockerfile
@@ -38,7 +38,7 @@ services:
 
 
 networks:
-  hfnet:
+  weather_stats_net:
     driver: bridge
     ipam:
       driver: default
