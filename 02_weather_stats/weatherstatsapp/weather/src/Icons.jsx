@@ -33,7 +33,7 @@ export const YouTubeIcon = (props) => (
 export const LoadingIcon = () => {
   return (
     <svg
-      className="w-7 h-7 mx-4 ml inline-block text-white animate-spin"
+      className="w-7 h-7 mx-4 ml inline-block text-black animate-spin"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
