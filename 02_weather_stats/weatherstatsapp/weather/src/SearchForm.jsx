@@ -1,4 +1,4 @@
-import { LoadingIcon } from "./LoadingIcon";
+import { LoadingIcon } from "./Icons";
 
 const SearchForm = ({
   searchInput,
