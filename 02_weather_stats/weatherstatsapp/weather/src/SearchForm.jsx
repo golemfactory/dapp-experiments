@@ -3,33 +3,12 @@ import { LoadingIcon } from "./Icons";
 const SearchForm = ({
   searchInput,
   setSearchInput,
-  setError,
   loading,
-  setLoading,
-  setResultList,
+  onSubmit
 }) => {
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    setError(false);
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&polygon=1&addressdetails=1&q=${searchInput}`
-      );
-      const parsedResult = await response.json();
-      setResultList(parsedResult);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setError(true);
-      setLoading(false);
-      setResultList([]);
-    }
-  };
   return (
     <form
-      onSubmit={handleSearch}
+      onSubmit={onSubmit}
       className="mt-1 flex rounded-md  rounded-r-full rounded-l-full shadow-lg"
     >
       <input

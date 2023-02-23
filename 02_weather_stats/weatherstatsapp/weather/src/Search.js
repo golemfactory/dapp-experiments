@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Temperature } from "./Temperature";
+import React, {useState} from "react";
+import {Temperature} from "./Temperature";
 import SearchForm from "./SearchForm";
 import ResultListItem from "./ResultListItem";
-import { ErrorInfo } from "./ErrorInfo";
+import {ErrorInfo} from "./ErrorInfo";
+import {fetchPlaces, prepareForDisplay} from "./utils/OpenStreetMap";
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [lastSearch, setLastSearch] = useState("");
   const [resultList, setResultList] = useState([]);
   const [weather, setWeather] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
@@ -17,7 +19,7 @@ const Search = () => {
     setWeatherLoading(true);
     setWeather(true);
     setError(false);
-    await new Promise((resolve) => setTimeout(resolve, 600));
+
     try {
       const response = await fetch(
         `/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`
@@ -34,10 +36,29 @@ const Search = () => {
     }
   };
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setError(false);
+    setLoading(true);
+
+    try {
+      const parsedResult = await fetchPlaces(searchInput);
+
+      setResultList(parsedResult);
+      setLastSearch(searchInput);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setError(true);
+      setLoading(false);
+      setResultList([]);
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-center gap-4">
-        <img src="weather.png" alt="logo" className="w-16 h-16 rounded-full" />
+        <img src="weather.png" alt="logo" className="w-16 h-16 rounded-full"/>
         <h1 className="font-bold text-2xl text-blue-600">
           weather <span className="font-thin">app</span>
         </h1>
@@ -56,53 +77,28 @@ const Search = () => {
         <SearchForm
           searchInput={searchInput}
           setSearchInput={setSearchInput}
-          setError={setError}
           loading={loading}
-          setLoading={setLoading}
-          setResultList={setResultList}
+          onSubmit={handleSearch}
         />
       </div>
 
       <div className="mt-14">
-        {error && <ErrorInfo />}
+        {error && <ErrorInfo/>}
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 -mx-4">
-          {resultList.map((result, index) => (
-            <React.Fragment key={index}>
-              {result.class === "place" &&
-                result.address &&
-                result.address.city && (
-                  <ResultListItem
-                    result={result}
-                    key={index}
-                    index={index}
-                    value={result.address.city}
-                    handleResultClick={handleResultClick}
-                    selectedCity={selectedCity}
-                    setSelectedCity={setSelectedCity}
-                  />
-                )}
-
-              {result.class === "boundary" &&
-                Object.values(result.address)
-                  .filter((obj) =>
-                    obj.toLowerCase().includes(searchInput.toLowerCase())
-                  )
-                  .map((displayobj, index) => (
-                    <ResultListItem
-                      result={result}
-                      key={index}
-                      index={index}
-                      value={`${displayobj}, ${result.address.country}`}
-                      handleResultClick={handleResultClick}
-                      selectedCity={selectedCity}
-                      setSelectedCity={setSelectedCity}
-                    />
-                  ))}
-            </React.Fragment>
+          {prepareForDisplay(resultList, lastSearch).map((result, index) => (
+            <ResultListItem
+              result={result}
+              key={index}
+              index={index}
+              value={result.value}
+              handleResultClick={handleResultClick}
+              selectedCity={selectedCity}
+              setSelectedCity={setSelectedCity}
+            />
           ))}
         </ul>
         {weather && (
-          <Temperature weather={weather} weatherLoading={weatherLoading} />
+          <Temperature weather={weather} weatherLoading={weatherLoading}/>
         )}
       </div>
     </div>
