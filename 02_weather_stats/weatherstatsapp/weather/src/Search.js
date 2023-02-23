@@ -19,7 +19,7 @@ const Search = () => {
     setWeatherLoading(true);
     setWeather(true);
     setError(false);
-
+    await new Promise((resolve) => setTimeout(resolve, 600));
     try {
       const response = await fetch(
         `/api/v1/weather?lat=${clickedData.lat}&long=${clickedData.lon}`
@@ -40,7 +40,7 @@ const Search = () => {
     e.preventDefault();
     setError(false);
     setLoading(true);
-
+    await new Promise((resolve) => setTimeout(resolve, 600));
     try {
       const parsedResult = await fetchPlaces(searchInput);
 
