@@ -33,9 +33,6 @@ nodes:
           "-c",
           "redis-server --bind 0.0.0.0 --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --loglevel debug > /dev/null &",
         ]
-    http_proxy:
-      ports:
-        - "6379"
     network: "default"
     ip:
       - "192.168.0.2"
@@ -47,9 +44,6 @@ nodes:
           "-c",
           "uvicorn weather.app:app --host 192.168.0.3 --port 5053 &",
         ]
-    http_proxy:
-      ports:
-        - "5053"
     network: "default"
     ip:
       - "192.168.0.3"
