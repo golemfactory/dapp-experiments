@@ -31,15 +31,16 @@ async def main(*args, **kwargs):
 
 async def main_sequential(*args, **kwargs):
     timestamps = []
-    for _ in range(1000):
+    for k in range(1000):
         start = time.time()
         await asyncio.create_task(run_pinger())
         end = time.time()
+        print('request {}, took {:.2f}s'.format(k, end - start))
         timestamps.append((start, end))
 
-        diff = end - start
-        if diff < 1:
-            await asyncio.sleep(1 - diff)
+        #diff = end - start
+        #if diff < 1:
+        #    await asyncio.sleep(1 - diff)
 
     measurements = await get_measurements()
 
