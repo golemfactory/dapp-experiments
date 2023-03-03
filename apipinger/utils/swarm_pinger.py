@@ -1,6 +1,8 @@
+import argparse
 import asyncio
 import json
 import time
+from datetime import datetime
 
 import aiohttp
 
@@ -29,18 +31,22 @@ async def main(*args, **kwargs):
     measurements = await get_measurements()
     print(json.dumps(measurements, indent=2))
 
+
 async def main_sequential(*args, **kwargs):
     timestamps = []
-    for k in range(1000):
+    for i in range(1000):
         start = time.time()
+
+        print(f"{datetime.now()} Request: {i}")
         await asyncio.create_task(run_pinger())
         end = time.time()
-        print('request {}, took {:.2f}s'.format(k, end - start))
+        print('request {}, took {:.2f}s'.format(i, end - start))
         timestamps.append((start, end))
 
-        #diff = end - start
-        #if diff < 1:
-        #    await asyncio.sleep(1 - diff)
+        sleep_time = 1.0
+        diff = end - start
+        if diff < sleep_time:
+            await asyncio.sleep(sleep_time - diff)
 
     measurements = await get_measurements()
 
@@ -50,10 +56,22 @@ async def main_sequential(*args, **kwargs):
         measurement["end_timestamp"] = end
         results.append(measurement)
 
-    print(json.dumps(measurements, indent=2))
     print(json.dumps(results, indent=2))
 
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Sends multiple API requests")
+    parser.add_argument(
+        "--sequential", default=False, help="Runs each requests after previous was finished. "
+                                            "Without this argument there is no guarantee"
+    )
+
+    args = parser.parse_args()
+
     start_at = time.time()
-    asyncio.run(main_sequential())
-    print(f"test duration:{time.time()-start_at}")
+    if args.sequential:
+        asyncio.run(main_sequential())
+    else:
+        asyncio.run(main())
+
+    print(f"test duration:{time.time() - start_at}")
