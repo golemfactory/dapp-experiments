@@ -10,8 +10,8 @@ services:
     ports:
       - 4001:4001
 
-  api:
-    build: api
+  backend:
+    build: backend
     image: todo-app-api:latest
     platform: linux/amd64
     command:
@@ -21,13 +21,13 @@ services:
     ports:
       - 5030:5000
 
-  web:
-    build: web
+  frontend:
+    build: frontend
     image: todo-app-web:latest
     platform: linux/amd64
     command:
       - /bin/run_web.sh
     depends_on:
-      - api
+      - backend
     ports:
       - 3030:80
