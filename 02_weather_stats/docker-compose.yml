@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  api:
+  backend:
     build:
       context: ./weatherstatsapi
       dockerfile: Dockerfile
@@ -26,7 +26,7 @@ services:
     ports:
       - "6379:6379"
     command: redis-server --loglevel warning --requirepass redispw
-  app:
+  frontend:
     platform: linux/amd64
     networks:
       - weather_stats_net
