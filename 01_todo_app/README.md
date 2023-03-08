@@ -1,6 +1,6 @@
 # TODO List Application
 
-![demo](https://user-images.githubusercontent.com/33448819/223681027-6a2290af-b6ee-44af-be89-314c8f8a16bb.png)
+![demo](https://user-images.githubusercontent.com/33448819/223681578-03193431-ed28-46e7-9faf-00bc0ea00613.png)
 
 
 This application is showcasing how to use Golem Network to host a 3-layer application (**React** + **Flask** + **RQLite**)
