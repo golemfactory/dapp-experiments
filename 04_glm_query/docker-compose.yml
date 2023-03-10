@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    ports:
+      - "9000:9000"
+    networks:
+      glm_query_net:
+        ipv4_address: 192.168.1.3
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    networks:
+      - glm_query_net
+    ports:
+      - "80:80"
+
+
+networks:
+  glm_query_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.188
