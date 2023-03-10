@@ -11,7 +11,7 @@ payloads:
     frontend:
         runtime: "vm"
         params:
-            image_hash: "abb2b05eced973a1476c8e1b22d26b5c719ec760cfd3a51ab894e2d9"
+            image_hash: "d8ce32bb8e388763d0157b581fbf432d24596386b87111453e58b3c3"
 
 nodes:
     backend:
@@ -20,14 +20,19 @@ nodes:
             - run:
                   args: ["/bin/sh", "-c", "poetry run glm_query run > out 2> err &"]
         network: "default"
+        http_proxy:
+            ports:
+                - "9000:9000"
         ip:
             - "192.168.1.3"
     frontend:
         payload: "frontend"
         network: "default"
+        depends_on:
+            - "backend"
         http_proxy:
             ports:
-                - "80"
+                - "80:80"
         init:
             - ["/docker-entrypoint.sh"]
             - ["/bin/chmod", "a+x", "/"]
