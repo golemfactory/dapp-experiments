@@ -9,9 +9,9 @@
             "os": "linux"
           },
           "urls": [
-            "http://girepo.dev.golem.network:8000/docker-04_glm_query_backend-latest-4edef9cc77.gvmi"
+            "http://girepo.dev.golem.network:8000/docker-04_glm_query_backend-latest-6f44e4ed78.gvmi"
           ],
-          "hash": "sha3:4e34be458e471bf5929a76bd539b2e060126a1ea4cf2359cea63ca65"
+          "hash": "sha3:e3c964343169d0a08b66751bfba89a90ec97544d8752c9a3e4ae0901"
         }
       ],
       "compManifest": {

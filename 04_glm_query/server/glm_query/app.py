@@ -13,6 +13,7 @@ _verbose: bool = False
 _debug: bool = False
 
 
+
 @app.route("/api", methods=["get"])
 @cross_origin()
 def root_get():
