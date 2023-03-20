@@ -11,7 +11,7 @@ payloads:
     frontend:
         runtime: "vm"
         params:
-            image_hash: "648b1b478e04b7eacb9100d8ce3cae09575ffadd0c0d3e4404edc6a7"
+            image_hash: "23df19c95a5ef59117f9a82b4f3cd1859a8dcdb765c650f160af0e13"
 
 nodes:
     backend:

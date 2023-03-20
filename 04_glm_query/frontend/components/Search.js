@@ -26,6 +26,7 @@ const Search = () => {
       setLoading(false);
       setBalanceLoading(false);
     } catch (error) {
+      setBalance(null);
       setBalanceLoading(false);
       setLoading(false);
       setError(true);
@@ -35,7 +36,6 @@ const Search = () => {
   return (
     <div className="w-full">
       <div className="flex items-center justify-center gap-4">
-        <img src="weather.png" alt="logo" className="w-16 h-16 rounded-full" />
         <h1 className="font-bold text-2xl text-blue-600">
           Query Blockchain <span className="font-thin">app</span>
         </h1>
@@ -59,6 +59,17 @@ const Search = () => {
           onSubmit={handleSearch}
         />
       </div>
+      <p className="text-sm text-gray-500 italic mt-1 ">
+        Don&apos;t have a Ethereum address?{" "}
+        <span
+          onClick={() => {
+            setSearchInput("0xD1f6Cdaa07db319f282a5E393aE0df0DeDD0058D");
+          }}
+          className="underline font-bold cursor-pointer"
+        >
+          Give me a random one
+        </span>
+      </p>
 
       <div className="mt-14">
         {error && <ErrorInfo />}

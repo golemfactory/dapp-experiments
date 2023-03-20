@@ -3,9 +3,9 @@ import SelectNetwork from "./SelectNetwork";
 import { useState } from "react";
 
 const networks = [
-  { id: 1, name: "Polygon" },
-  { id: 2, name: "Mainnet" },
-  { id: 3, name: "Rinkeby" },
+  { id: 1, value: "polygon", displayName: "Polygon" },
+  { id: 2, value: "mainnet", displayName: "Ethereum Mainnet" },
+  { id: 3, value: "rinkeby", displayName: "Rinkeby" },
 ];
 
 const SearchForm = ({ searchInput, setSearchInput, loading, onSubmit }) => {
@@ -34,7 +34,7 @@ const SearchForm = ({ searchInput, setSearchInput, loading, onSubmit }) => {
           type="submit"
           className="relative text-white  text-lg bg-golemblue px-8 md:px-16 py-2 "
         >
-          {loading ? <LoadingIcon color={"white"} /> : "Search"}
+          {loading ? <LoadingIcon color={"white"} /> : "Check"}
         </button>
       </div>
     </form>
