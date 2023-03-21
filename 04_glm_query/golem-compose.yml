@@ -1,0 +1,42 @@
+meta:
+    name: "GLM Query"
+    author: "Golem Factory"
+    description: "A minimal app querying the GLM smart contract for the current balance."
+    version: "0.1.0"
+payloads:
+    backend:
+        runtime: "vm/manifest"
+        params:
+            manifest: ewogICAgInZlcnNpb24iOiAiMC4xLjAiLAogICAgImNyZWF0ZWRBdCI6ICIyMDIyLTEyLTAxVDAwOjAwOjAwLjAwMDAwMFoiLAogICAgImV4cGlyZXNBdCI6ICIyMTAwLTAxLTAxVDAwOjAwOjAwLjAwMDAwMFoiLAogICAgInBheWxvYWQiOiBbCiAgICAgICAgewogICAgICAgICAgInBsYXRmb3JtIjogewogICAgICAgICAgICAiYXJjaCI6ICJ4ODZfNjQiLAogICAgICAgICAgICAib3MiOiAibGludXgiCiAgICAgICAgICB9LAogICAgICAgICAgInVybHMiOiBbCiAgICAgICAgICAgICJodHRwOi8vZ2lyZXBvLmRldi5nb2xlbS5uZXR3b3JrOjgwMDAvZG9ja2VyLTA0X2dsbV9xdWVyeV9iYWNrZW5kLWxhdGVzdC02ZjQ0ZTRlZDc4Lmd2bWkiCiAgICAgICAgICBdLAogICAgICAgICAgImhhc2giOiAic2hhMzplM2M5NjQzNDMxNjlkMGEwOGI2Njc1MWJmYmE4OWE5MGVjOTc1NDRkODc1MmM5YTNlNGFlMDkwMSIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJjb21wTWFuaWZlc3QiOiB7CiAgICAgICJ2ZXJzaW9uIjogIjAuMS4wIiwKICAgICAgInNjcmlwdCI6IHsKICAgICAgICAiY29tbWFuZHMiOiBbCiAgICAgICAgICAicnVuIC4qIgogICAgICAgIF0sCiAgICAgICAgIm1hdGNoIjogInJlZ2V4IgogICAgICB9LAogICAgICAibmV0IjogewogICAgICAgICJpbmV0IjogewogICAgICAgICAgIm91dCI6IHsKICAgICAgICAgICAgInByb3RvY29scyI6IFsKICAgICAgICAgICAgICAiaHR0cCIKICAgICAgICAgICAgXSwKICAgICAgICAgICAgInVybHMiOiBbCiAgICAgICAgICAgICAgICAiaHR0cDovL2Jvci5nb2xlbS5uZXR3b3JrIiwKICAgICAgICAgICAgICAgICJodHRwczovL2dldGguZ29sZW0ubmV0d29yazo1NTU1NSIsCiAgICAgICAgICAgICAgICAiaHR0cHM6Ly9ib3IuZ29sZW0ubmV0d29yayIsCiAgICAgICAgICAgICAgICAiaHR0cDovL2dldGgudGVzdG5ldC5nb2xlbS5uZXR3b3JrOjU1NTU1IgogICAgICAgICAgICBdCiAgICAgICAgICB9CiAgICAgICAgfQogICAgICB9CiAgICB9CiAgfQ==
+    frontend:
+        runtime: "vm"
+        params:
+            image_hash: "23df19c95a5ef59117f9a82b4f3cd1859a8dcdb765c650f160af0e13"
+
+nodes:
+    backend:
+        payload: "backend"
+        init:
+            - run:
+                  args: ["/bin/sh", "-c", "poetry run glm_query run > out 2> err &"]
+        network: "default"
+
+        ip:
+            - "192.168.1.3"
+    frontend:
+        payload: "frontend"
+        network: "default"
+        depends_on:
+            - "backend"
+        http_proxy:
+            ports:
+                - "80:80"
+        init:
+            - ["/docker-entrypoint.sh"]
+            - ["/bin/chmod", "a+x", "/"]
+            - ["/usr/sbin/nginx"]
+        ip:
+            - "192.168.1.4"
+networks:
+    default:
+        ip: "192.168.1.0/24"

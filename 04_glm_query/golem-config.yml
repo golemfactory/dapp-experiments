@@ -1,0 +1,9 @@
+yagna:
+  app_key: "$YAGNA_APPKEY"
+  subnet_tag: "public"
+
+
+payment:
+  budget: 1.0  # GLM
+  driver: "erc20"
+  network: "rinkeby"
