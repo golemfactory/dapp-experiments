@@ -59,7 +59,7 @@ const Search = () => {
           onSubmit={handleSearch}
         />
       </div>
-      <p className="text-sm text-gray-500 italic mt-1 ">
+      <p className="text-sm text-gray-500 italic mt-1  text-center">
         Don&apos;t have a Ethereum address?{" "}
         <span
           onClick={() => {
