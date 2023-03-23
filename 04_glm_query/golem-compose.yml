@@ -11,7 +11,7 @@ payloads:
     frontend:
         runtime: "vm"
         params:
-            image_hash: "23df19c95a5ef59117f9a82b4f3cd1859a8dcdb765c650f160af0e13"
+            image_hash: "690aaf1f2bb1a787836d4c226bf0cca774d1300d69803320a49052ba"
 
 nodes:
     backend:
@@ -30,7 +30,7 @@ nodes:
             - "backend"
         http_proxy:
             ports:
-                - "80:80"
+                - "80"
         init:
             - ["/docker-entrypoint.sh"]
             - ["/bin/chmod", "a+x", "/"]
