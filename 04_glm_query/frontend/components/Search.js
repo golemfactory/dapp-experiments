@@ -19,7 +19,7 @@ const Search = () => {
     setError(false);
     try {
       const fetchBalance = await fetch(
-        `http://localhost/api?network=${selectedNetwork}&address=${address}`
+        `/api?network=${selectedNetwork}&address=${address}`
       );
       const balance = await fetchBalance.json();
       setBalance(balance.balance.slice(0, 10));
