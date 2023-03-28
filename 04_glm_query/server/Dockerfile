@@ -1,6 +1,6 @@
-FROM python:3.9-slim
-RUN apt-get update
-RUN apt-get install -y telnet curl
+FROM python:3.9-alpine
+RUN apk update
+RUN apk add busybox-extras curl
 RUN pip install -U pip poetry
 
 RUN mkdir -p /webapp/glm_query
