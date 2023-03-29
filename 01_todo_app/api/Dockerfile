@@ -1,7 +1,7 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 WORKDIR /webapp
-ADD requirements.txt .
-RUN pip install -r requirements.txt
+ADD requirements.freeze.txt .
+RUN pip install -r requirements.freeze.txt
 ADD app.py .
 ADD run_api.sh .
