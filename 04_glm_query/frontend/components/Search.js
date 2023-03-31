@@ -67,7 +67,7 @@ const Search = () => {
           }}
           className="underline font-bold cursor-pointer"
         >
-          Give me a random one
+          Give me an example
         </span>
       </p>
 
