@@ -1,58 +1,63 @@
 meta:
-  name: "ToDo List App"
-  description: "Application to store and manage your TODOs, powered by Golem Network"
-  author: "GolemFactory"
-  version: "0.2.0"
+    name: "ToDo List App"
+    description: "Application to store and manage your TODOs, powered by Golem Network"
+    author: "GolemFactory"
+    version: "0.2.0"
 payloads:
-  db:
-    runtime: "vm"
-    params:
-      image_hash: "85021afecf51687ecae8bdc21e10f3b11b82d2e3b169ba44e177340c"
-  api:
-    runtime: "vm"
-    params:
-      image_hash: "7df11ba76dc45f3a36d7c0a2efe318abb05384869b45b260471f4be7"
-  web:
-    runtime: "vm"
-    params:
-      image_hash: "bc55450d0e20184a963b027d33dce58f53a95762a1bbacb6c55349ee"
+    db:
+        runtime: "vm"
+        params:
+            image_hash: "85021afecf51687ecae8bdc21e10f3b11b82d2e3b169ba44e177340c"
+    backend:
+        runtime: "vm"
+        params:
+            image_hash: "7df11ba76dc45f3a36d7c0a2efe318abb05384869b45b260471f4be7"
+    frontend:
+        runtime: "vm"
+        params:
+            image_hash: "f02cf2c960157e62367a95344f0dfcddc2b48cd1ef049409bf886223"
 nodes:
-  db:
-    payload: "db"
-    init:
-      - run:
-          args:
-            - "/bin/run_rqlite.sh"
-    network: "default"
-    ip:
-      - "192.168.0.2"
-  api:
-    payload: "api"
-    init:
-      - run:
-          args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 initdb"]
-      - run:
-          args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 run > /webapp/out 2> /webapp/err &"]
-    network: "default"
-    ip:
-      - "192.168.0.3"
-    depends_on:
-      - "db"
-  web:
-    payload: "web"
-    init:
-      - run:
-          args: ["/bin/chmod", "a+x", "/"]
-      - run:
-          args: ["/bin/bash", "-c", "/bin/run_web.sh 192.168.0.3 &"]
-    http_proxy:
-      ports:
-        - "80"  # specify just the remote port, allow the local port to be automatically chosen
-    network: "default"
-    ip:
-      - "192.168.0.4"
-    depends_on:
-      - "api"
+    db:
+        payload: "db"
+        init:
+            - run:
+                  args:
+                      - "/bin/run_rqlite.sh"
+        network: "default"
+        ip:
+            - "192.168.0.2"
+    backend:
+        payload: "backend"
+        init:
+            - run:
+                  args: ["/bin/bash", "-c", "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 initdb"]
+            - run:
+                  args:
+                      [
+                          "/bin/bash",
+                          "-c",
+                          "cd /webapp && python app.py --db-address 192.168.0.2 --db-port 4001 run > /webapp/out 2> /webapp/err &",
+                      ]
+        network: "default"
+        ip:
+            - "192.168.0.3"
+        depends_on:
+            - "db"
+    frontend:
+        payload: "frontend"
+        init:
+            - run:
+                  args: ["/bin/chmod", "a+x", "/"]
+            - run:
+                  args: ["/bin/bash", "-c", "/bin/run_web.sh 192.168.0.3 &"]
+        http_proxy:
+            ports:
+                - "80" # specify just the remote port, allow the local port to be automatically chosen
+        network: "default"
+        ip:
+            - "192.168.0.4"
+        depends_on:
+            - "backend"
 networks:
-  default:
-    ip: "192.168.0.0/24"
+    default:
+        ip: "192.168.0.0/24"
