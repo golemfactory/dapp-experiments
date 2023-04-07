@@ -2,17 +2,18 @@
 
 ![demo](https://user-images.githubusercontent.com/33448819/223681578-03193431-ed28-46e7-9faf-00bc0ea00613.png)
 
-This application is showcasing how to use Golem Network to host a 3-layer application (**React** + **Flask** + **RQLite**)
+This application is showcasing how to use Golem Network to host a 3-layer application (**React** + **Flask** + **RQLite
+**)
 
 The app itself is written without any Golem context in mind, with full dockerization and compose support.
 Only Golem-specific files are:
 
--   **`golem-compose.yml`** to define the application-specific Golem config (image hashes, capabilities, init commands)
--   **`golem-config.yml`** to define the runtime-specific Golem config (yagna appkey, subnet, budget)
+- **`golem-compose.yml`** to define the application-specific Golem config (image hashes, capabilities, init commands)
+- **`golem-config.yml`** to define the runtime-specific Golem config (yagna appkey, subnet, budget)
 
 ## Architecture
-<img width="1260" alt="image" src="https://user-images.githubusercontent.com/33448819/230567047-fc419451-0d5e-45ae-8e82-9ab3acb88fbe.png">
 
+![architecture](https://user-images.githubusercontent.com/33448819/230567047-fc419451-0d5e-45ae-8e82-9ab3acb88fbe.png)
 
 ## Setup
 
@@ -46,7 +47,8 @@ First, in a separate terminal window, we initiate the payment driver by running 
 $ yagna payment init --sender
 ```
 
-Next, we need to obtain the application key for runtime config. You can check if you have a key already created by calling
+Next, we need to obtain the application key for runtime config. You can check if you have a key already created by
+calling
 
 ```
 $ yagna app-key list
@@ -60,7 +62,8 @@ $ yagna app-key create <key_name>
 
 ## Running
 
-Having the above setup complete, run the application with the following command (substituting `<your_key>` with an actual key you've obtained in the previous section):
+Having the above setup complete, run the application with the following command (substituting `<your_key>` with an
+actual key you've obtained in the previous section):
 
 ```
 YAGNA_APPKEY=<your_key> dapp-runner start --config golem-config.yml golem-compose.yml
@@ -85,20 +88,22 @@ Starting app: ToDo List App
 {"frontend": {"local_proxy_address": "http://localhost:8081"}}
 ```
 
-To see the app in action, follow the link provided in `local_proxy_address` variable (the port may be different from `8081` as it's dynamically assigned)
+To see the app in action, follow the link provided in `local_proxy_address` variable (the port may be different
+from `8081` as it's dynamically assigned)
 
 ## Development
 
-If you'd like to modify this app, the development flow itself doesn't change that much from a regular webapp development,
+If you'd like to modify this app, the development flow itself doesn't change that much from a regular webapp
+development,
 with the exception of a few additional steps that will be mentioned here.
 
 ### Local
 
 To spin off the local development, we need to do the following steps:
 
--   Run RQLite from Docker
--   Run backend locally
--   Run frontend locally
+- Run RQLite from Docker
+- Run backend locally
+- Run frontend locally
 
 To start RQLite database from Docker, run the following command
 
@@ -109,7 +114,8 @@ $ docker compose up -d db
 
 The database should be available on `localhost:4001`.
 
-To start working on the backend, install all the required dependencies and run the app itself with the following commands:
+To start working on the backend, install all the required dependencies and run the app itself with the following
+commands:
 
 ```
 $ cd backend
@@ -119,7 +125,8 @@ $ python3 -m pip install -r requirements.txt
 
 The backend should be available on `localhost:5000`
 
-To start working on the frontend, install all the required dependencies and run the app itself with the following commands:
+To start working on the frontend, install all the required dependencies and run the app itself with the following
+commands:
 
 ```
 $ cd frontend
@@ -131,14 +138,16 @@ The frontend should open itself and should be available on `localhost:3000`
 
 ### Deploying on Golem
 
-Once you're satisfied with the changes, the next thing is to deploy this app on Golem. There are a few steps to be followed
+Once you're satisfied with the changes, the next thing is to deploy this app on Golem. There are a few steps to be
+followed
 to do so:
 
--   Build containers with Docker Compose
--   Create GVM images from docker images
--   Update the `golem-compose.yml` definition with the updated hashes
+- Build containers with Docker Compose
+- Create GVM images from docker images
+- Update the `golem-compose.yml` definition with the updated hashes
 
-**If you have only changed one component (only frontend or only backend), please remember to build and convert only parts related to it**
+**If you have only changed one component (only frontend or only backend), please remember to build and convert only
+parts related to it**
 
 Starting with the Docker containers, create new images with the following command:
 
@@ -146,8 +155,10 @@ Starting with the Docker containers, create new images with the following comman
 $ docker compose build backend frontend
 ```
 
-This will result in new docker images called `todo-app-backend:latest` and `todo-app-frontend:latest`. These two images will be used
-to receive GVMI hashes to be used with `golem-compose.yml`. Process will be the same, only the image name will be different
+This will result in new docker images called `todo-app-backend:latest` and `todo-app-frontend:latest`. These two images
+will be used
+to receive GVMI hashes to be used with `golem-compose.yml`. Process will be the same, only the image name will be
+different
 
 ```
 # build backend
@@ -168,7 +179,8 @@ $ gvmkit-build todo-app-frontend:latest --push
 # After upload is complete, please take the frontend hash value after log with "hash link:"
 ```
 
-Having both of these hashes, please open the `golem-compose.yml` file and update the `payloads` definition with the updated hashes
+Having both of these hashes, please open the `golem-compose.yml` file and update the `payloads` definition with the
+updated hashes
 
 ```diff
 payloads:
@@ -196,15 +208,18 @@ YAGNA_APPKEY=<your_key> dapp-runner start --config golem-config.yml golem-compos
 
 ## Troubleshooting
 
-For any non-listed matter (or just a regular chatter) please write us a message on [chat.golem.network](chat.golem.network)
+For any non-listed matter (or just a regular chatter) please write us a message
+on [chat.golem.network](chat.golem.network)
 
 ### I have issues during yagna setup
 
-If you have issues during the yagna daemon initialization, please refer to this [handbook article on getting started as a creator](https://handbook.golem.network/requestor-tutorials/flash-tutorial-of-requestor-development)
+If you have issues during the yagna daemon initialization, please refer to
+this [handbook article on getting started as a creator](https://handbook.golem.network/requestor-tutorials/flash-tutorial-of-requestor-development)
 
 ### [Errno 104] Connection reset by peer
 
-If you see this error during the `gvmkit-build <image> --push` command, it means the image is already uploaded (no changes detected). Please use the previous hash instead
+If you see this error during the `gvmkit-build <image> --push` command, it means the image is already uploaded (no
+changes detected). Please use the previous hash instead
 
 ## Known caveats
 
@@ -212,13 +227,16 @@ These are the things we know are not obvious and maybe a bit hacky, but are appl
 
 ### NGinX by default doesn't have permissions to serve content
 
-Due to the current limitations, NGinX won't have access to the filesystem to serve the files correctly and will return 404 when accessing correct path.
+Due to the current limitations, NGinX won't have access to the filesystem to serve the files correctly and will return
+404 when accessing correct path.
 The workaround for this situation is to run `/bin/chmod a+x /` before the nginx starts.
 
 ### Init commands have to be run in the background
 
-Each of the commands listed in the `init` section of the node has to finish its execution. That's why each of the commands,
-even if it hangs on the execution like serving the backend, has to be ended with `&` indicating running in the background.
+Each of the commands listed in the `init` section of the node has to finish its execution. That's why each of the
+commands,
+even if it hangs on the execution like serving the backend, has to be ended with `&` indicating running in the
+background.
 
 ### There is no shell access to the nodes running on providers
 
