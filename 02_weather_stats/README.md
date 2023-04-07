@@ -2,7 +2,7 @@
 
 This application is showcasing how to use Golem Network with access to external services (not hosted on Golem) using outbound network connections.
 
-![weather-stats-c4-lv2-containers](https://user-images.githubusercontent.com/11493087/203728884-3d506a1b-9f40-4c61-869d-207ef6061e1f.jpg)
+<img width="1389" alt="image" src="https://user-images.githubusercontent.com/33448819/230566048-13dad2fa-e2b8-4ea8-94bf-1bcc82a042aa.png">
 
 The app itself is written as a regular web application, implemented as a set of Docker containers, without any up-front Golem context in mind.
 The only Golem-specific files are:
