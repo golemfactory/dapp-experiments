@@ -10,6 +10,10 @@ Only Golem-specific files are:
 -   **`golem-compose.yml`** to define the application-specific Golem config (image hashes, capabilities, init commands)
 -   **`golem-config.yml`** to define the runtime-specific Golem config (yagna appkey, subnet, budget)
 
+## Architecture
+<img width="1260" alt="image" src="https://user-images.githubusercontent.com/33448819/230567047-fc419451-0d5e-45ae-8e82-9ab3acb88fbe.png">
+
+
 ## Setup
 
 This section will walk through the app setup for running the already built app on Golem. If you'd like to modify it and
