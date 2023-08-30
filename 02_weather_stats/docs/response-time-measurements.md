@@ -11,7 +11,7 @@ yagna:
 payment:
   ...
   driver: "erc20"
-  network: "rinkeby"
+  network: "goerli"
 ```
 
 Related issue: [Measure example app's response times #233](https://github.com/golemfactory/yagna-sdk-team/issues/233)
