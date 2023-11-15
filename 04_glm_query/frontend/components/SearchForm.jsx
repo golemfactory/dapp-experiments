@@ -5,7 +5,7 @@ import { useState } from "react";
 const networks = [
   { id: 1, value: "polygon", displayName: "Polygon" },
   { id: 2, value: "mainnet", displayName: "Ethereum Mainnet" },
-  { id: 3, value: "rinkeby", displayName: "Rinkeby" },
+  { id: 3, value: "goerli", displayName: "Goerli" },
 ];
 
 const SearchForm = ({ searchInput, setSearchInput, loading, onSubmit }) => {
