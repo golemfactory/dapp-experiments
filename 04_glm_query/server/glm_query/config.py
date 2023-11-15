@@ -15,7 +15,7 @@ CONFIG = {
         "glm_contract_address": "0x0B220b82F3eA3B7F6d9A1D8ab58930C064A2b5Bf",
     },
     "goerli": {
-        "name": "Goreli",
+        "name": "Goerli",
         "geth_address": "http://geth.testnet.golem.network:55555",
         "geth_poa_middleware": True,
         "glm_contract_address": "0xd94e3DC39d4Cad1DAd634e7eb585A57A19dC7EFE",
