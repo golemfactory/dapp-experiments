@@ -192,7 +192,7 @@ For any non-listed matter (or just a regular chatter) please write us a message 
 
 ### I have issues during yagna setup
 
-If you have issues during the yagna daemon initialization, please refer to this [handbook article on getting started as a creator](https://handbook.golem.network/requestor-tutorials/flash-tutorial-of-requestor-development)
+If you have issues during the yagna daemon initialization, please refer to this [docs article on getting started as a creator](https://docs.golem.network/docs/quickstarts/python-quickstart)
 
 ### [Errno 104] Connection reset by peer
 
