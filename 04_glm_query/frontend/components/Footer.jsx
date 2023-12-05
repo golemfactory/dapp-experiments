@@ -11,14 +11,14 @@ const navigation = {
     { name: "Stats", href: "https://stats.golem.network/" },
   ],
   second: [
-    { name: "SDK", href: "https://handbook.golem.network/" },
+    { name: "SDK", href: "https://docs.golem.network/" },
     {
       name: "Requestor docs",
-      href: "https://handbook.golem.network/requestor-tutorials/flash-tutorial-of-requestor-development",
+      href: "https://docs.golem.network/docs/quickstarts/python-quickstart",
     },
     {
       name: "Test harness",
-      href: "https://handbook.golem.network/requestor-tutorials/interactive-testing-environment",
+      href: "https://docs.golem.network/docs/creators/tools/goth",
     },
     { name: "Github", href: "https://github.com/golemfactory" },
   ],

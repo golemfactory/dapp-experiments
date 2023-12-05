@@ -10,7 +10,7 @@ It consists of a Nextjs frontend and a Flask backend that exposes a REST API.
 ## How to run it?
 
 We're going to show you a quick way to run this example. For a full explanation and more elaborate
-description of what Golem is and what you can do with it, please refer to our [handbook](https://handbook.golem.network/).
+description of what Golem is and what you can do with it, please refer to our [docs](https://docs.golem.network/).
 
 ### Run the yagna daemon
 
@@ -75,4 +75,4 @@ open the listed address in your browser and the app should now be working.
 ## Next steps
 
 You may wish to have a look at all the other examples in our `dapp-experiments` repository and
-dive into the full documentation of Golem's dApps ecosystem in our [handbook](https://handbook.golem.network/).
+dive into the full documentation of Golem's dApps ecosystem in our [docs](https://docs.golem.network/).
